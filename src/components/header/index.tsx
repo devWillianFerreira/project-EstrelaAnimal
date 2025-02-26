@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="flex justify-between w-full max-w-screen h-15 bg-white items-center px-5 lg:px-14 py-10">
+    <div className="flex justify-between w-full h-15 bg-white items-center px-5 lg:px-14 py-10">
       <div className="text-blue-950 lg:hidden">
         <Menu />
       </div>

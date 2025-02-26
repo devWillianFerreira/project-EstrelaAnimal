@@ -10,7 +10,7 @@ const BannerHome = () => {
               Seu pet merece cuidado, carinho e atenção especial.
             </h1>
             <p className=";g: text-lg">
-              Oferecemos os melhores Produtos para garantir o bem-estar e a
+              Oferecemos os melhores produtos para garantir o bem-estar e a
               felicidade do seu amigo de quatro patas.
             </p>
             <div>
@@ -29,7 +29,11 @@ const BannerHome = () => {
               </p>
             </div>
           </div>
-          <div className="hidden lg:block h-full relative">
+          <div
+            className="hidden lg:block h-full relative "
+            data-aos="fade-up-right"
+            data-aos-delay="300"
+          >
             <img
               src="hero-dog.webp"
               className="object-cover"
