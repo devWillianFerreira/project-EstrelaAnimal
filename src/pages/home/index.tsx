@@ -33,7 +33,7 @@ const HomePage = () => {
         <div className="flex my-5  lg:flex-row flex-wrap justify-center gap-5">
           <CardCategories image="cate.jpg" name="Cachorro" />
           <CardCategories image="cate-2.jpg" name="Gato" />
-          <CardCategories image="cate-3.jpg" name="Peixe" />\
+          <CardCategories image="cate-3.jpg" name="Peixe" />
           <CardCategories image="cate-4.jpg" name="Passáro" />
         </div>
       </div>
