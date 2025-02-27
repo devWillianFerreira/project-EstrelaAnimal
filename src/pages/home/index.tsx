@@ -1,11 +1,12 @@
 import BannerHome from "../../components/BannerHome";
+import CardCategories from "../../components/cardCatetories";
 import CardsBanner from "../../components/Cards";
 
 const HomePage = () => {
   return (
     <div>
       <BannerHome />
-      <div className="w-full  relative flex-col  md:px-5 flex lg:flex-row justify-center my-28 items-center gap-14">
+      <div className="w-full  relative flex-col flex flex-wrap md:flex-row   lg:flex-row justify-center my-28 items-center gap-14">
         <CardsBanner
           image="bannerDog.jpg"
           title="Compre um e ganhe outro grátis"
@@ -26,6 +27,15 @@ const HomePage = () => {
           title="Alegria acessível para animais de estimação"
           subTitle="Obtenha todos os melhores brinquedos e camas para animais de estimação."
         />
+      </div>
+      <div className="flex justify-center flex-col items-center bg-slate-100">
+        <h1 className="text-4xl font-bold text-blue-950 my-5">Categorias</h1>
+        <div className="flex my-5  lg:flex-row flex-wrap justify-center gap-5">
+          <CardCategories image="cate.jpg" name="Cachorro" />
+          <CardCategories image="cate-2.jpg" name="Gato" />
+          <CardCategories image="cate-3.jpg" name="Peixe" />\
+          <CardCategories image="cate-4.jpg" name="Passáro" />
+        </div>
       </div>
     </div>
   );
