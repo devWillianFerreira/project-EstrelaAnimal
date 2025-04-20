@@ -1,8 +1,13 @@
-import { ShoppingBagIcon, User } from "lucide-react";
+import { LogInIcon, ShoppingBagIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import HamburgerMenu from "../hamburger";
 
+import { useContext } from "react";
+import { userContext } from "../../context/userContext";
+import AccountMenu from "../accoutMenu";
+
 const Header = () => {
+  const { user } = useContext(userContext);
   return (
     <div className="flex justify-between w-full h-15 bg-white items-center px-5 lg:px-14 py-10">
       <div className="text-blue-950 lg:hidden w-[50px]">
@@ -26,10 +31,16 @@ const Header = () => {
         </Link>
       </div>
       <div className="flex flex-row gap-5">
-        <div className="bg-blue-950 px-2 py-2 rounded-full">
-          <Link to="/login" className="relative text-white ">
-            <User />
-          </Link>
+        <div className="bg-blue-950 px-2 py-2 rounded-md">
+          {!user && (
+            <Link
+              to="/login"
+              className="relative text-white flex flex-row gap-3"
+            >
+              <p>Login </p> <LogInIcon />
+            </Link>
+          )}
+          {user && <AccountMenu />}
         </div>
         <div className="bg-blue-950 px-2 py-2 rounded-full">
           <Link to="/cart" className="relative text-white ">
