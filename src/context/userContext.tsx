@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useEffect, useState } from "react";
 import { supabase } from "../services/connectionSupabase";
 
