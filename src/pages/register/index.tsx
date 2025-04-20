@@ -13,7 +13,10 @@ const schema = z.object({
     .string()
     .nonempty("O email é obrigatório")
     .email("Insira um email válido"),
-  password: z.string().nonempty("A senha é obrigatória"),
+  password: z
+    .string()
+    .nonempty("A senha é obrigatória")
+    .min(6, "Digite no mínimo 6 caracteres"),
 });
 
 type FormData = z.infer<typeof schema>;
