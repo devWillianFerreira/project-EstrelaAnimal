@@ -10,7 +10,7 @@ const HomePage = () => {
     <div className="overflow-hidden">
       <BannerHome />
 
-      <div className="w-full  relative justify-center  flex-col flex flex-wrap md:flex-row   lg:justify-between flex-row  my-28 items-center gap-14 px-45">
+      <div className=" container  mx-auto px-4 w-full  relative justify-center  flex-col flex flex-wrap md:flex-row   lg:justify-between flex-row  my-28 items-center">
         <CardsBanner
           image="bannerDog.jpg"
           title="Compre um e ganhe outro grátis"
@@ -41,7 +41,7 @@ const HomePage = () => {
           <CardCategories image="cate-4.jpg" name="Passáro" />
         </div>
       </div>
-      <div className="lg:flex flex-col lg:px-45">
+      <div className="container mx-auto px-4 flex flex-col">
         <div className="w-full  text-blue-950 flex flex-col  lg:justify-between items-center">
           <h1 className="text-2xl font-bold">Produtos em Altas</h1>
           <Link to="/products">
