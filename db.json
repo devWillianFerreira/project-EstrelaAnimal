@@ -1,0 +1,140 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Ração Golden Filhotes",
+      "categoria": "Cachorro",
+      "tipo": "Comida",
+      "preco": 89.9,
+      "imagem": "https://cdn.awsli.com.br/203/203612/produto/127471737/1c3b01b072.jpg"
+    },
+    {
+      "id": 2,
+      "nome": "Ração Pedigree Adulto",
+      "categoria": "Cachorro",
+      "tipo": "Comida",
+      "preco": 105.5,
+      "imagem": "https://http2.mlstatic.com/D_NQ_NP_659917-MLB77792855411_072024-O-raco-pedigree-para-cachorro-adulto-carne-e-frango-15kg.webp"
+    },
+    {
+      "id": 3,
+      "nome": "Petisco Dentalife",
+      "categoria": "Cachorro",
+      "tipo": "Comida",
+      "preco": 20.99,
+      "imagem": "https://a-static.mlcdn.com.br/800x560/petisco-dentallife-para-gatos-adultos-40g-purina/petdoginbox/1136/0f254a306502a9f0a0d9aa62de33db20.jpeg"
+    },
+    {
+      "id": 6,
+      "nome": "Ração Whiskas Adulto",
+      "categoria": "Gato",
+      "tipo": "Comida",
+      "preco": 39.9,
+      "imagem": "https://cobasi.vteximg.com.br/arquivos/ids/1064740/0-WHISKAS-ADULTO-CARNE-900g.png?v=638689980375570000"
+    },
+    {
+      "id": 7,
+      "nome": "Petisco Temptations",
+      "categoria": "Gato",
+      "tipo": "Comida",
+      "preco": 12.0,
+      "imagem": "https://images.petz.com.br/fotos/1683816150165.jpg"
+    },
+    {
+      "id": 8,
+      "nome": "Ração Golden Gatos Castrados",
+      "categoria": "Gato",
+      "tipo": "Comida",
+      "preco": 45.5,
+      "imagem": "https://m.media-amazon.com/images/I/511ApsZvAWL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "id": 9,
+      "nome": "Sache Friskies Salmão",
+      "categoria": "Gato",
+      "tipo": "Comida",
+      "preco": 4.99,
+      "imagem": "https://images.tcdn.com.br/img/img_prod/1061113/sache_friskies_salmao_85g_2331_1_361dc8a27a54ee05376d22e117d9a1f4.jpg"
+    },
+    {
+      "id": 11,
+      "nome": "Mistura de Sementes para Canário",
+      "categoria": "Pássaro",
+      "tipo": "Comida",
+      "preco": 15.5,
+      "imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlnDiB7IoKHdjJUPVgdpBSpv6RB1XB6VA90g&s"
+    },
+    {
+      "id": 12,
+      "nome": "Alpiste Selecionado",
+      "categoria": "Pássaro",
+      "tipo": "Comida",
+      "preco": 7.99,
+      "imagem": "https://images.tcdn.com.br/img/img_prod/815630/alpiste_9963_1_46e532a2100db8cad531fbc3a0525706.jpg"
+    },
+    {
+      "id": 13,
+      "nome": "Ração Megazoo Periquito",
+      "categoria": "Pássaro",
+      "tipo": "Comida",
+      "preco": 19.9,
+      "imagem": "https://cobasi.vteximg.com.br/arquivos/ids/184489/Racao-para-Calopsita-e-Periquito-PM13-Megazoo-350g.jpg?v=638749867179230000"
+    },
+    {
+      "id": 14,
+      "nome": "Suplemento Vitamínico Avian",
+      "categoria": "Pássaro",
+      "tipo": "Comida",
+      "preco": 22.0,
+      "imagem": "https://cdn.awsli.com.br/203/203612/produto/130067996/4b2001f4e5.jpg"
+    },
+    {
+      "id": 15,
+      "nome": "Frutas Desidratadas para Pássaros",
+      "categoria": "Pássaro",
+      "tipo": "Comida",
+      "preco": 16.0,
+      "imagem": "https://www.terradospassaros.com/loja/images/8287_gg.jpg"
+    },
+    {
+      "id": 16,
+      "nome": "Alimento em Flocos para Peixes Tropicais",
+      "categoria": "Peixe",
+      "tipo": "Comida",
+      "preco": 11.9,
+      "imagem": "https://images.petz.com.br/fotos/1671106737963.jpg"
+    },
+    {
+      "id": 17,
+      "nome": "Comida Tablet",
+      "categoria": "Peixe",
+      "tipo": "Comida",
+      "preco": 13.5,
+      "imagem": "https://cdn.awsli.com.br/2500x2500/1144/1144911/produto/176558235/3afd170775.jpg"
+    },
+    {
+      "id": 18,
+      "nome": "Alimento Tetra Color",
+      "categoria": "Peixe",
+      "tipo": "Comida",
+      "preco": 17.8,
+      "imagem": "https://cobasi.vteximg.com.br/arquivos/ids/177051/Color-Flakes-Tetra-20g.jpg?v=635936504639230000"
+    },
+    {
+      "id": 19,
+      "nome": "Ração para Betta Fish",
+      "categoria": "Peixe",
+      "tipo": "Comida",
+      "preco": 9.99,
+      "imagem": "https://popularpet.com.br/wp-content/uploads/2024/09/betta.jpg"
+    },
+    {
+      "id": 20,
+      "nome": "Comida Supervit para Peixes Ornamentais",
+      "categoria": "Peixe",
+      "tipo": "Comida",
+      "preco": 14.0,
+      "imagem": "https://amantesdoaquarismo.cdn.magazord.com.br/img/2022/10/produto/890/captura-de-tela-2022-10-19-232131.jpg?ims=fit-in/475x650/filters:fill(white)"
+    }
+  ]
+}
