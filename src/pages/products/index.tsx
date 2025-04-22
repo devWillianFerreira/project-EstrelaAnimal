@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import CategoryProducts from "./components/categoryProducts/inde";
+import CategoryProducts from "./components/categoryProducts";
 import { ShoppingCart } from "lucide-react";
 interface productsProps {
   id: number;
@@ -11,6 +11,8 @@ interface productsProps {
 }
 const ProductsPage = () => {
   const [products, setProducts] = useState<productsProps[]>([]);
+  const [allProducts, setAllProducts] = useState<productsProps[]>([]);
+  const [category, setCategory] = useState("Todos");
   useEffect(() => {
     fetch("http://localhost:5000/produtos")
       .then((res) => res.json())
@@ -24,38 +26,62 @@ const ProductsPage = () => {
           type: item.tipo,
         }));
         setProducts(newProduct);
+        setAllProducts(newProduct);
       });
   }, []);
 
+  function handleFilterProduct(typeProduct: string) {
+    setCategory(typeProduct);
+    const newProducts = allProducts.filter(
+      (product) =>
+        product.category.toLocaleLowerCase() === typeProduct.toLocaleLowerCase()
+    );
+    setProducts(newProducts);
+  }
+
   return (
-    <div className="px-45">
+    <div className="container mx-auto px-4">
       <h1 className="font-bold text-5xl text-center mt-8 text-blue-950">
         Produtos
       </h1>
-      <div className="flex fle-row gap-20 mt-8 justify-center">
-        <button className="cursor-pointer">
-          <CategoryProducts image="cate.jpg" text="Cachorro" />
-        </button>
-        <button className="cursor-pointer">
-          <CategoryProducts image="cate-2.jpg" text="Gato" />
-        </button>
-        <button className="cursor-pointer">
-          <CategoryProducts image="cate-3.jpg" text="Peixe" />
-        </button>
-        <button className="cursor-pointer">
-          <CategoryProducts image="cate-4.jpg" text="Passáro" />
-        </button>
+      <div className="flex fle-row mt-8 justify-center gap-8">
+        <CategoryProducts
+          image="cate.jpg"
+          text="Cachorro"
+          handleFilterProducts={() => handleFilterProduct("Cachorro")}
+        />
+
+        <CategoryProducts
+          image="cate-2.jpg"
+          text="Gato"
+          handleFilterProducts={() => handleFilterProduct("gato")}
+        />
+
+        <CategoryProducts
+          image="cate-3.jpg"
+          text="Peixe"
+          handleFilterProducts={() => handleFilterProduct("peixe")}
+        />
+
+        <CategoryProducts
+          image="cate-4.jpg"
+          text="Passáro"
+          handleFilterProducts={() => handleFilterProduct("Pássaro")}
+        />
       </div>
-      <div className="grid grid-cols-1 mt-14 gap-6 md:grid-cols-2 lg:grid-cols-5">
+      <h1 className="px-4 text-blue-950 text-3xl font-bold mt-8">
+        {category.toUpperCase()}
+      </h1>
+      <div className="w-full  px-4 grid grid-cols-1 mt-14 gap-6 md:grid-cols-2 lg:grid-cols-4">
         {products.map((product) => (
           <section
             key={product.id}
-            className=" w-full  mx-auto  rounded-lg p-6 shadow-2xl hover:shadow-1xl transition-shadow duration-300"
+            className=" w-full  mx-auto rounded-lg p-6 shadow-2xl hover:shadow-1xl transition-shadow duration-300"
           >
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-[400px] object-cover rounded-lg"
+              className="w-full h-96 mx-auto  object-cover rounded-lg"
             />
             <p className="font-medium text-blue-950 mt-1 mb-3">
               {product.name}
