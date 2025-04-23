@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CategoryProducts from "./components/categoryProducts";
 import { ChevronLeft, ShoppingCart } from "lucide-react";
-interface productsProps {
+import { cardContext } from "../../context/cartContext";
+export interface productsProps {
   id: number;
   category: string;
   name: string;
@@ -13,6 +14,8 @@ const ProductsPage = () => {
   const [products, setProducts] = useState<productsProps[]>([]);
   const [allProducts, setAllProducts] = useState<productsProps[]>([]);
   const [category, setCategory] = useState("Todos");
+
+  const { addItemCart } = useContext(cardContext);
   useEffect(() => {
     fetch("http://localhost:5000/produtos")
       .then((res) => res.json())
@@ -44,7 +47,7 @@ const ProductsPage = () => {
       <h1 className="font-bold text-5xl text-center mt-8 text-blue-950">
         Produtos
       </h1>
-      <div className="flex fle-row mt-8 justify-center gap-8">
+      <div className="flex fle-row mt-8 justify-center ">
         <CategoryProducts
           image="cate.jpg"
           text="Cachorro"
@@ -87,7 +90,7 @@ const ProductsPage = () => {
         )}
         {category.toUpperCase()}
       </h1>
-      <div className="w-full  px-4 grid grid-cols-1 mt-14 gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="w-full  px-4 grid grid-cols-1 mt-4 gap-6 md:grid-cols-2 lg:grid-cols-4">
         {products.map((product) => (
           <section
             key={product.id}
@@ -108,7 +111,10 @@ const ProductsPage = () => {
                   currency: "BRL",
                 })}
               </strong>
-              <span className="bg-blue-950 px-10 py-2 rounded-md cursor-pointer">
+              <span
+                className="bg-blue-950 px-10 py-2 rounded-md cursor-pointer"
+                onClick={() => addItemCart(product)}
+              >
                 <ShoppingCart color="#fff" />
               </span>
             </div>
