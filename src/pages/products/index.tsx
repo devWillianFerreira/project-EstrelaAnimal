@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CategoryProducts from "./components/categoryProducts";
-import { ShoppingCart } from "lucide-react";
+import { ChevronLeft, ShoppingCart } from "lucide-react";
 interface productsProps {
   id: number;
   category: string;
@@ -49,27 +49,42 @@ const ProductsPage = () => {
           image="cate.jpg"
           text="Cachorro"
           handleFilterProducts={() => handleFilterProduct("Cachorro")}
+          isActive={category.toLocaleLowerCase() === "cachorro"}
         />
 
         <CategoryProducts
           image="cate-2.jpg"
           text="Gato"
           handleFilterProducts={() => handleFilterProduct("gato")}
+          isActive={category.toLocaleLowerCase() === "gato"}
         />
 
         <CategoryProducts
           image="cate-3.jpg"
           text="Peixe"
           handleFilterProducts={() => handleFilterProduct("peixe")}
+          isActive={category.toLocaleLowerCase() === "peixe"}
         />
 
         <CategoryProducts
           image="cate-4.jpg"
           text="Passáro"
           handleFilterProducts={() => handleFilterProduct("Pássaro")}
+          isActive={category.toLocaleLowerCase() === "pássaro"}
         />
       </div>
-      <h1 className="px-4 text-blue-950 text-3xl font-bold mt-8">
+      <h1 className="px-4 text-blue-950 text-3xl font-bold mt-8 flex items-center gap-3  transition-all duration-300 ease-in-out">
+        {category.toLocaleLowerCase() != "todos" && (
+          <p
+            onClick={() => {
+              setCategory("Todos");
+              setProducts(allProducts);
+            }}
+            className="cursor-pointer"
+          >
+            <ChevronLeft />
+          </p>
+        )}
         {category.toUpperCase()}
       </h1>
       <div className="w-full  px-4 grid grid-cols-1 mt-14 gap-6 md:grid-cols-2 lg:grid-cols-4">
