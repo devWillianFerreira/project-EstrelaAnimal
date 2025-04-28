@@ -1,14 +1,14 @@
 import { Minus, Plus, Trash } from "lucide-react";
-import { productsProps } from "../../../products";
-import { cartProps } from "../../../../context/cartContext";
+
 interface CardCartProps {
   name: string;
   image: string;
   price: number;
   amount: number;
   total: number;
-  deleteItemCart: (newProduct: cartProps) => void;
-  addItemCart: (newProduct: productsProps) => void;
+  removeItemCart: () => void;
+  addItemCart: () => void;
+  deleteItemCart: () => void;
 }
 
 const CardCart = ({
@@ -17,8 +17,9 @@ const CardCart = ({
   price,
   amount,
   total,
-  deleteItemCart,
+  removeItemCart,
   addItemCart,
+  deleteItemCart,
 }: CardCartProps) => {
   return (
     <div className="w-full flex flex-row items-center gap-4 rounded-md p-3 shadow-2xl hover:shadow-1xl transition-shadow duration-300 mb-4">
@@ -36,14 +37,11 @@ const CardCart = ({
           </div>
 
           <div className="flex items-center gap-2 bg-gray-100 px-2 py-1 rounded-full">
-            <button
-              className="cursor-pointer p-1"
-              onClick={() => deleteItemCart}
-            >
+            <button className="cursor-pointer p-1" onClick={removeItemCart}>
               <Minus size={14} />
             </button>
             <span className="text-sm">{amount}</span>
-            <button className="cursor-pointer p-1" onClick={() => addItemCart}>
+            <button className="cursor-pointer p-1" onClick={addItemCart}>
               <Plus size={14} />
             </button>
           </div>
@@ -56,7 +54,10 @@ const CardCart = ({
               currency: "BRL",
             })}
           </h1>
-          <button className="cursor-pointer bg-blue-950 p-2 justify-center flex rounded-md">
+          <button
+            className="cursor-pointer bg-blue-950 p-2 justify-center flex rounded-md"
+            onClick={deleteItemCart}
+          >
             <Trash size={15} color="white" />
           </button>
         </div>

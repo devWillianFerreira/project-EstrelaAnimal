@@ -70,10 +70,10 @@ function CardProvider({ children }: cardProviderProps) {
         return item;
       });
       setCart(updateCart);
-    } else {
-      const removeItem = cart.filter((item) => item.id !== newProduct.id);
-      setCart(removeItem);
+      return;
     }
+    const removeItem = cart.filter((item) => item.id !== newProduct.id);
+    setCart(removeItem);
   }
 
   function deleteItemCart(newProduct: cartProps) {

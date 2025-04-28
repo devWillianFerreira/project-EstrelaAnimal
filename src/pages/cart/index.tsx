@@ -52,8 +52,9 @@ const CartPage = () => {
                   price={item.price}
                   total={item.total}
                   key={item.id}
-                  deleteItemCart={() => removeItemCart(item)}
+                  removeItemCart={() => removeItemCart(item)}
                   addItemCart={() => addItemCart(item)}
+                  deleteItemCart={() => deleteItemCart(item)}
                 />
               ))}
               <PriceSummary />
