@@ -26,7 +26,7 @@ const CategoryProducts = ({
         <img
           src={image}
           className={`
-            w-full max-w-40 object-cover rounded-full 
+            w-full max-w-30 object-cover rounded-full 
             group-hover:brightness-90 
             transition-all duration-300 ease-in-out
           `}
