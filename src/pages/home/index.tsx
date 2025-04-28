@@ -10,7 +10,7 @@ const HomePage = () => {
     <div className="overflow-hidden">
       <BannerHome />
 
-      <div className=" container  mx-auto px-4 w-full  relative justify-center  flex-col flex flex-wrap md:flex-row   lg:justify-between flex-row  my-28 items-center">
+      <div className=" container mx-auto px-4 w-full  relative justify-center  flex-col flex md:flex-row flex-wrap gap-4   lg:justify-between  my-28 items-center">
         <CardsBanner
           image="bannerDog.jpg"
           title="Compre um e ganhe outro grátis"
