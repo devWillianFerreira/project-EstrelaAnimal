@@ -12,6 +12,7 @@ interface cardContextData {
   addItemCart: (newProduct: productsProps) => void;
   removeItemCart: (newPorduct: cartProps) => void;
   deleteItemCart: (newPorduct: cartProps) => void;
+  totalResultCart: (items: cartProps[]) => void;
 }
 
 export interface cartProps {
@@ -29,7 +30,6 @@ export const cardContext = createContext({} as cardContextData);
 
 function CardProvider({ children }: cardProviderProps) {
   const [cart, setCart] = useState<cartProps[]>([]);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [total, setTotal] = useState("");
 
   function addItemCart(newProduct: productsProps) {
@@ -46,6 +46,7 @@ function CardProvider({ children }: cardProviderProps) {
         return item;
       });
       setCart(updateCart);
+      totalResultCart(updateCart);
       return;
     }
     const data = {
@@ -54,6 +55,7 @@ function CardProvider({ children }: cardProviderProps) {
       total: newProduct.price,
     };
     setCart((product) => [...product, data]);
+    totalResultCart([...cart, data]);
   }
 
   function removeItemCart(newProduct: cartProps) {
@@ -70,6 +72,7 @@ function CardProvider({ children }: cardProviderProps) {
         return item;
       });
       setCart(updateCart);
+      totalResultCart(updateCart);
       return;
     }
     const removeItem = cart.filter((item) => item.id !== newProduct.id);
@@ -79,6 +82,17 @@ function CardProvider({ children }: cardProviderProps) {
   function deleteItemCart(newProduct: cartProps) {
     const deleteItem = cart.filter((item) => item.id !== newProduct.id);
     setCart(deleteItem);
+    totalResultCart(deleteItem);
+  }
+
+  function totalResultCart(items: cartProps[]) {
+    const myCart = items;
+    const totalResult = myCart.reduce((acc, obj) => acc + obj.total, 0);
+    const formattedResult = totalResult.toLocaleString("PT-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+    setTotal(formattedResult);
   }
 
   return (
@@ -90,6 +104,7 @@ function CardProvider({ children }: cardProviderProps) {
         addItemCart,
         removeItemCart,
         deleteItemCart,
+        totalResultCart,
       }}
     >
       {children}
