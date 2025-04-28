@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 
-const PriceSummary = () => {
+interface PriceSummaryProps {
+  total: string;
+}
+const PriceSummary = ({ total }: PriceSummaryProps) => {
   return (
     <div className=" rounded-md p-3 shadow-2xl hover:shadow-1xl transition-shadow duration-300 mt-5">
       <p className="font-bold text-2xl mt-3">Pedidos</p>
@@ -8,7 +11,7 @@ const PriceSummary = () => {
         <div className="border-2 border-slate-100 w-full mt-5"></div>
         <div className="flex justify-between items-center mt-5">
           <p className="font-medium"> SubTotal: </p>
-          <p className="font-medium">R$ 59.00</p>
+          <p className="font-medium">{total}</p>
         </div>
         <div className="flex justify-between items-center mt-3">
           <p className="font-medium">Frete: </p>
@@ -24,7 +27,7 @@ const PriceSummary = () => {
         <div className="border-2 border-slate-100 w-full mt-5"></div>
         <div className="flex justify-between">
           <p className="font-bold">Total: </p>
-          <p className="font-bold ">R$ 59,00</p>
+          <p className="font-bold ">{total}</p>
         </div>
       </div>
       <Link to="/">

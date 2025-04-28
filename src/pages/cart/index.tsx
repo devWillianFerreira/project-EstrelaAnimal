@@ -57,7 +57,7 @@ const CartPage = () => {
                   deleteItemCart={() => deleteItemCart(item)}
                 />
               ))}
-              <PriceSummary />
+              <PriceSummary total={total} />
             </div>
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-[80%_20%] w-full gap-4 mt-10">
@@ -121,7 +121,7 @@ const CartPage = () => {
                 ))}
               </div>
 
-              <PriceSummary />
+              <PriceSummary total={total} />
             </div>
           )}
         </div>
