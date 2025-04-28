@@ -6,14 +6,15 @@ interface cardProviderProps {
 }
 
 interface cardContextData {
-  cart: productsProps[];
+  cart: cartProps[];
   total: string;
   cartAmount: number;
   addItemCart: (newProduct: productsProps) => void;
   removeItemCart: (newPorduct: cartProps) => void;
+  deleteItemCart: (newPorduct: cartProps) => void;
 }
 
-interface cartProps {
+export interface cartProps {
   id: number;
   category: string;
   name: string;
@@ -45,7 +46,6 @@ function CardProvider({ children }: cardProviderProps) {
         return item;
       });
       setCart(updateCart);
-      console.log(cart);
       return;
     }
     const data = {
@@ -60,7 +60,7 @@ function CardProvider({ children }: cardProviderProps) {
     const indexItem = cart.findIndex((product) => product.id === newProduct.id);
     if (indexItem !== -1 && cart[indexItem].amount > 1) {
       const updateCart = cart.map((item, index) => {
-        if (indexItem === index) {
+        if (index === indexItem) {
           return {
             ...item,
             amount: item.amount - 1,
@@ -70,9 +70,15 @@ function CardProvider({ children }: cardProviderProps) {
         return item;
       });
       setCart(updateCart);
+    } else {
+      const removeItem = cart.filter((item) => item.id !== newProduct.id);
+      setCart(removeItem);
     }
-    const removeItem = cart.filter((item) => item.id !== newProduct.id);
-    setCart(removeItem);
+  }
+
+  function deleteItemCart(newProduct: cartProps) {
+    const deleteItem = cart.filter((item) => item.id !== newProduct.id);
+    setCart(deleteItem);
   }
 
   return (
@@ -83,6 +89,7 @@ function CardProvider({ children }: cardProviderProps) {
         cartAmount: cart.length,
         addItemCart,
         removeItemCart,
+        deleteItemCart,
       }}
     >
       {children}
