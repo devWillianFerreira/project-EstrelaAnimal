@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { cardContext } from "../../context/cartContext";
+import { cartContext } from "../../context/cartContext";
 import { Link } from "react-router-dom";
 import { Minus, Plus, Trash } from "lucide-react";
 import CardCart from "./components/cardCart";
@@ -22,7 +22,7 @@ const CartPage = () => {
   }, []);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const { addItemCart, removeItemCart, deleteItemCart, cart, total } =
-    useContext(cardContext);
+    useContext(cartContext);
   return (
     <div className="container mx-auto px-4 w-full flex justify-center flex-col items-center">
       <h1 className="font-bold text-3xl mt-7 text-blue-950 md:text-5xl ">

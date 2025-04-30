@@ -5,11 +5,11 @@ import HamburgerMenu from "../hamburger";
 import { useContext } from "react";
 import { userContext } from "../../context/userContext";
 import AccountMenu from "../accoutMenu";
-import { cardContext } from "../../context/cartContext";
+import { cartContext } from "../../context/cartContext";
 
 const Header = () => {
   const { user } = useContext(userContext);
-  const { cartAmount } = useContext(cardContext);
+  const { cartAmount } = useContext(cartContext);
   return (
     <div className="flex justify-between w-full h-15 bg-white items-center px-5 lg:px-14 py-10">
       <div className="text-blue-950 lg:hidden w-[50px]">

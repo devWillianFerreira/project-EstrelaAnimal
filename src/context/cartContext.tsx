@@ -26,7 +26,7 @@ export interface cartProps {
   total: number;
 }
 
-export const cardContext = createContext({} as cardContextData);
+export const cartContext = createContext({} as cardContextData);
 
 function CardProvider({ children }: cardProviderProps) {
   const [cart, setCart] = useState<cartProps[]>([]);
@@ -96,7 +96,7 @@ function CardProvider({ children }: cardProviderProps) {
   }
 
   return (
-    <cardContext.Provider
+    <cartContext.Provider
       value={{
         cart,
         total,
@@ -108,7 +108,7 @@ function CardProvider({ children }: cardProviderProps) {
       }}
     >
       {children}
-    </cardContext.Provider>
+    </cartContext.Provider>
   );
 }
 

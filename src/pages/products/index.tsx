@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import CategoryProducts from "./components/categoryProducts";
 import { ChevronLeft, ShoppingCart } from "lucide-react";
-import { cardContext } from "../../context/cartContext";
+import { cartContext } from "../../context/cartContext";
+import { Link } from "react-router-dom";
 export interface productsProps {
   id: number;
   category: string;
@@ -15,7 +16,7 @@ const ProductsPage = () => {
   const [allProducts, setAllProducts] = useState<productsProps[]>([]);
   const [category, setCategory] = useState("Todos");
 
-  const { addItemCart } = useContext(cardContext);
+  const { addItemCart } = useContext(cartContext);
   useEffect(() => {
     fetch("http://localhost:5000/produtos")
       .then((res) => res.json())
@@ -96,14 +97,16 @@ const ProductsPage = () => {
             key={product.id}
             className=" w-full  mx-auto rounded-lg p-6 shadow-2xl hover:shadow-1xl transition-shadow duration-300"
           >
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-96 mx-auto  object-cover rounded-lg"
-            />
-            <p className="font-medium text-blue-950 mt-1 mb-3">
-              {product.name}
-            </p>
+            <Link to={`/productDetail/${product.id}`}>
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-96 mx-auto  object-cover rounded-lg"
+              />
+              <p className="font-medium text-blue-950 mt-1 mb-3">
+                {product.name}
+              </p>
+            </Link>
             <div className="flex gap-3 items-center justify-between">
               <strong className="text-blue-950">
                 {product.price.toLocaleString("PT-BR", {
