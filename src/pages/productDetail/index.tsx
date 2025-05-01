@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { productsProps } from "../products";
 import {
   Clock9,
@@ -9,10 +9,13 @@ import {
   Package,
   WalletCards,
 } from "lucide-react";
+import { cartContext } from "../../context/cartContext";
 
 const ProductDetail = () => {
   const { id } = useParams();
+  const { addItemCart } = useContext(cartContext);
   const [product, setProduct] = useState<productsProps>();
+  const navigate = useNavigate();
   useEffect(() => {
     fetch(`http://localhost:5000/produtos/${id}`)
       .then((response) => response.json())
@@ -28,17 +31,29 @@ const ProductDetail = () => {
         setProduct(newProduct);
       });
   }, []);
+
+  function handleBuyProduct() {
+    if (product) {
+      addItemCart(product);
+      navigate("/cart");
+    }
+  }
   return (
     <main className="w-full container max-w-7xl mx-auto px-4">
       <div className=" flex  flex-col lg:flex-row gap-7 w-full justify-center">
-        <div className="flex-1 flex flex-row gap-3 ">
+        <div className="flex-1 flex flex-col lg:flex-row gap-3 mx-auto ">
           <img
             src={product?.image}
             className="border-1  w-20 h-20 object-cover rounded-md p-2"
           />
-          <img src={product?.image} className=" w-full rounded-md p-2" />
+          <div className="overflow-hidden aspect-[4/5] w-full">
+            <img
+              src={product?.image}
+              className=" w-full h-full rounded-md p-2 object-contain"
+            />
+          </div>
         </div>
-        <div className="flex-1 w-full object-contain mx-6">
+        <div className="flex-1 w-full object-contain lg:mx-6">
           <h1 className="text-blue-950 font-medim text-4xl mb-6">
             {product?.name}
           </h1>
@@ -57,7 +72,7 @@ const ProductDetail = () => {
             <h1 className="text-blue-950 font-semibold mt-3">
               Formas de Pagamento
             </h1>
-            <div className="flex flex-row gap-10 mt-6 mb-3">
+            <div className="flex flex-row gap-10 mt-6 mb-3 flex-wrap justify-center">
               <div className="flex flex-col items-center">
                 <p className="p-2 bg-black rounded-md  hover:scale-110 duration-300">
                   <DollarSign color="white" />
@@ -86,7 +101,10 @@ const ProductDetail = () => {
             </div>
           </div>
 
-          <button className="bg-blue-950 text-white w-full h-10 font-semibold rounded-full mt-7 cursor-pointer">
+          <button
+            className="bg-blue-950 text-white w-full h-10 font-semibold rounded-full mt-7 cursor-pointer"
+            onClick={handleBuyProduct}
+          >
             Comprar
           </button>
 
@@ -94,7 +112,7 @@ const ProductDetail = () => {
             <Package size={35} />
             <h1 className="font-medium">Frete grátis para todo Brásil</h1>
           </div>
-          <div className="flex mt-3 items-center gap-4">
+          <div className="flex mt-3 items-center gap-4 mb-3">
             <Clock9 size={35} />
             <h1 className="font-medium">Entrega em: 3-7 dias úteis</h1>
           </div>
