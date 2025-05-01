@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import { productsProps } from "../pages/products";
 
 interface cardProviderProps {
@@ -29,8 +29,15 @@ export interface cartProps {
 export const cartContext = createContext({} as cardContextData);
 
 function CardProvider({ children }: cardProviderProps) {
-  const [cart, setCart] = useState<cartProps[]>([]);
+  const [cart, setCart] = useState<cartProps[]>(() => {
+    const storedCart = localStorage.getItem("cart");
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
   const [total, setTotal] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   function addItemCart(newProduct: productsProps) {
     const indexItem = cart.findIndex((product) => product.id === newProduct.id);
