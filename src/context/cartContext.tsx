@@ -28,7 +28,7 @@ export interface cartProps {
 
 export const cartContext = createContext({} as cardContextData);
 
-function CardProvider({ children }: cardProviderProps) {
+function CartProvider({ children }: cardProviderProps) {
   const [cart, setCart] = useState<cartProps[]>(() => {
     const storedCart = localStorage.getItem("cart");
     return storedCart ? JSON.parse(storedCart) : [];
@@ -37,6 +37,7 @@ function CardProvider({ children }: cardProviderProps) {
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
+    totalResultCart(cart);
   }, [cart]);
 
   function addItemCart(newProduct: productsProps) {
@@ -84,6 +85,7 @@ function CardProvider({ children }: cardProviderProps) {
     }
     const removeItem = cart.filter((item) => item.id !== newProduct.id);
     setCart(removeItem);
+    totalResultCart(removeItem);
   }
 
   function deleteItemCart(newProduct: cartProps) {
@@ -119,4 +121,4 @@ function CardProvider({ children }: cardProviderProps) {
   );
 }
 
-export default CardProvider;
+export default CartProvider;
