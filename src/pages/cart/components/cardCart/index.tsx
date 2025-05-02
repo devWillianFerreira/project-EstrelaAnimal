@@ -22,7 +22,7 @@ const CardCart = ({
   deleteItemCart,
 }: CardCartProps) => {
   return (
-    <div className="w-full flex flex-row items-center gap-4 rounded-md p-3 shadow-2xl hover:shadow-1xl transition-shadow duration-300 mb-4">
+    <div className="w-full flex flex-row items-center gap-4 rounded-md p-3 border-1 border-slate-200 mb-4">
       <img src={image} className="w-20 h-20 object-cover rounded" />
       <div className="flex flex-col flex-1 justify-between h-full">
         <div className="flex justify-between items-start">

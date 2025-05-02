@@ -5,7 +5,7 @@ interface PriceSummaryProps {
 }
 const PriceSummary = ({ total }: PriceSummaryProps) => {
   return (
-    <div className=" rounded-md p-3 shadow-2xl hover:shadow-1xl transition-shadow duration-300 mt-5">
+    <div className=" rounded-md p-3 border-1 border-blue-950  mt-5">
       <p className="font-bold text-2xl mt-3">Pedidos</p>
       <div>
         <div className="border-2 border-slate-100 w-full mt-5"></div>
