@@ -4,6 +4,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "../../components/input";
+import MaskedInput from "./components/inputMask";
 
 const schema = z.object({
   name: z
@@ -11,14 +12,11 @@ const schema = z.object({
     .nonempty("O nome é obrigatório")
     .min(5, "Por favor, informe seu nome completo. Mínimo de X caracteres."),
   street: z.string().nonempty("A rua é obrigatória"),
-  number: z.coerce.number().positive("Por Favor,  digite um número válido"),
-  cep: z.coerce
-    .number()
-    .positive("Por favor, digite um cep válido")
-    .min(2, "Digite cep válido"),
+  number: z.string().nonempty("O número da rua é obrigatório"),
+  cep: z.string().nonempty("O cep é obritóriog"),
   city: z.string().nonempty("A cidade é obrigatória"),
   state: z.string().nonempty("O estado é obrigatório"),
-  phone: z.coerce.number().positive("Por favor, difite um telefone válido"),
+  phone: z.string().nonempty("O número de telefone é obrigatório"),
 });
 
 type formData = z.infer<typeof schema>;
@@ -60,20 +58,24 @@ const CheckoutPage = () => {
             </div>
             <div>
               <p>Telefone</p>
-              <Input
+              <MaskedInput
+                mask="(__) _____ - ____"
                 name="phone"
-                placeholder="(00)0000-0000"
+                type="text"
                 register={register}
-                type="number"
+                placeholder="(11) 9 9999-9999"
+                replacement={{ _: /\d/ }}
                 error={errors.phone?.message}
               />
             </div>
             <p>CEP</p>
-            <Input
+            <MaskedInput
+              mask="_____ - ___"
               name="cep"
-              placeholder="00000-000"
+              type="text"
               register={register}
-              type="number"
+              placeholder="00000 - 000"
+              replacement={{ _: /\d/ }}
               error={errors.cep?.message}
             />
             <div className="flex flex-row w-full gap-4">
