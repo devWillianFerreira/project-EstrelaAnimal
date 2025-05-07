@@ -30,7 +30,7 @@ const PriceSummary = ({ total }: PriceSummaryProps) => {
           <p className="font-bold ">{total}</p>
         </div>
       </div>
-      <Link to="/">
+      <Link to="/checkout">
         <h1 className="p-4 bg-blue-950 text-white rounded-md mt-6 font-bold flex justify-center">
           CHECKOUT
         </h1>
