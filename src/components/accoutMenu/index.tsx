@@ -15,7 +15,6 @@ const AccountMenu = () => {
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
-      {/* Botão + Menu estão todos dentro desta div */}
       <div className="flex flex-row gap-1 bg-blue-950 text-white items-center cursor-pointer  rounded-md">
         <span className="text-md">
           Olá, <strong>Willian</strong>
@@ -30,10 +29,11 @@ const AccountMenu = () => {
             <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
               Meus Pedidos
             </li>
-            <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
-              <button onClick={handleLogoutUser} className="text-red-500">
-                Sair
-              </button>
+            <li
+              className="hover:bg-gray-100 p-2 rounded cursor-pointer"
+              onClick={handleLogoutUser}
+            >
+              <button className="text-red-500">Sair</button>
             </li>
           </ul>
         </div>
