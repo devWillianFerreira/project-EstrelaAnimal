@@ -15,10 +15,29 @@ datasource db {
 }
 
 model Orders{
-id String @id @default(uuid())
-product String 
-amount Int
-price Float
-UidUser String
-created DateTime @default(now())
+  id String @id @default(uuid())
+  category String
+  name String
+  type String
+  image String
+  price String
+  amount String
+  total String
+  created DateTime @default(now())
+  UserId String
+  
+}
+
+model Checkout_info {
+  id String @id @default(uuid())
+  name String
+  cpf String
+  phone String 
+  cep String
+  street String 
+  number String
+  city String
+  state String 
+  created DateTime @default(now())
+  user String
 }

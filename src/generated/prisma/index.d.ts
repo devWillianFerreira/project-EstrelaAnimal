@@ -18,6 +18,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type Orders = $Result.DefaultSelection<Prisma.$OrdersPayload>
+/**
+ * Model Checkout_info
+ * 
+ */
+export type Checkout_info = $Result.DefaultSelection<Prisma.$Checkout_infoPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -153,6 +158,16 @@ export class PrismaClient<
     * ```
     */
   get orders(): Prisma.OrdersDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.checkout_info`: Exposes CRUD operations for the **Checkout_info** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Checkout_infos
+    * const checkout_infos = await prisma.checkout_info.findMany()
+    * ```
+    */
+  get checkout_info(): Prisma.Checkout_infoDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -593,7 +608,8 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    Orders: 'Orders'
+    Orders: 'Orders',
+    Checkout_info: 'Checkout_info'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -612,7 +628,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "orders"
+      modelProps: "orders" | "checkout_info"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -687,6 +703,80 @@ export namespace Prisma {
           count: {
             args: Prisma.OrdersCountArgs<ExtArgs>
             result: $Utils.Optional<OrdersCountAggregateOutputType> | number
+          }
+        }
+      }
+      Checkout_info: {
+        payload: Prisma.$Checkout_infoPayload<ExtArgs>
+        fields: Prisma.Checkout_infoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.Checkout_infoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Checkout_infoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.Checkout_infoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Checkout_infoPayload>
+          }
+          findFirst: {
+            args: Prisma.Checkout_infoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Checkout_infoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.Checkout_infoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Checkout_infoPayload>
+          }
+          findMany: {
+            args: Prisma.Checkout_infoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Checkout_infoPayload>[]
+          }
+          create: {
+            args: Prisma.Checkout_infoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Checkout_infoPayload>
+          }
+          createMany: {
+            args: Prisma.Checkout_infoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.Checkout_infoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Checkout_infoPayload>[]
+          }
+          delete: {
+            args: Prisma.Checkout_infoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Checkout_infoPayload>
+          }
+          update: {
+            args: Prisma.Checkout_infoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Checkout_infoPayload>
+          }
+          deleteMany: {
+            args: Prisma.Checkout_infoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.Checkout_infoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.Checkout_infoUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Checkout_infoPayload>[]
+          }
+          upsert: {
+            args: Prisma.Checkout_infoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Checkout_infoPayload>
+          }
+          aggregate: {
+            args: Prisma.Checkout_infoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCheckout_info>
+          }
+          groupBy: {
+            args: Prisma.Checkout_infoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Checkout_infoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.Checkout_infoCountArgs<ExtArgs>
+            result: $Utils.Optional<Checkout_infoCountAggregateOutputType> | number
           }
         }
       }
@@ -775,6 +865,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     orders?: OrdersOmit
+    checkout_info?: Checkout_infoOmit
   }
 
   /* Types for Logging */
@@ -864,6 +955,36 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type Checkout_infoCountOutputType
+   */
+
+  export type Checkout_infoCountOutputType = {
+    orders: number
+  }
+
+  export type Checkout_infoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    orders?: boolean | Checkout_infoCountOutputTypeCountOrdersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Checkout_infoCountOutputType without action
+   */
+  export type Checkout_infoCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Checkout_infoCountOutputType
+     */
+    select?: Checkout_infoCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Checkout_infoCountOutputType without action
+   */
+  export type Checkout_infoCountOutputTypeCountOrdersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OrdersWhereInput
+  }
+
 
   /**
    * Models
@@ -875,86 +996,88 @@ export namespace Prisma {
 
   export type AggregateOrders = {
     _count: OrdersCountAggregateOutputType | null
-    _avg: OrdersAvgAggregateOutputType | null
-    _sum: OrdersSumAggregateOutputType | null
     _min: OrdersMinAggregateOutputType | null
     _max: OrdersMaxAggregateOutputType | null
   }
 
-  export type OrdersAvgAggregateOutputType = {
-    amount: number | null
-    price: number | null
-  }
-
-  export type OrdersSumAggregateOutputType = {
-    amount: number | null
-    price: number | null
-  }
-
   export type OrdersMinAggregateOutputType = {
     id: string | null
-    product: string | null
-    amount: number | null
-    price: number | null
-    UidUser: string | null
+    category: string | null
+    name: string | null
+    type: string | null
+    image: string | null
+    price: string | null
+    amount: string | null
+    total: string | null
     created: Date | null
+    UserId: string | null
   }
 
   export type OrdersMaxAggregateOutputType = {
     id: string | null
-    product: string | null
-    amount: number | null
-    price: number | null
-    UidUser: string | null
+    category: string | null
+    name: string | null
+    type: string | null
+    image: string | null
+    price: string | null
+    amount: string | null
+    total: string | null
     created: Date | null
+    UserId: string | null
   }
 
   export type OrdersCountAggregateOutputType = {
     id: number
-    product: number
-    amount: number
+    category: number
+    name: number
+    type: number
+    image: number
     price: number
-    UidUser: number
+    amount: number
+    total: number
     created: number
+    UserId: number
     _all: number
   }
 
 
-  export type OrdersAvgAggregateInputType = {
-    amount?: true
-    price?: true
-  }
-
-  export type OrdersSumAggregateInputType = {
-    amount?: true
-    price?: true
-  }
-
   export type OrdersMinAggregateInputType = {
     id?: true
-    product?: true
-    amount?: true
+    category?: true
+    name?: true
+    type?: true
+    image?: true
     price?: true
-    UidUser?: true
+    amount?: true
+    total?: true
     created?: true
+    UserId?: true
   }
 
   export type OrdersMaxAggregateInputType = {
     id?: true
-    product?: true
-    amount?: true
+    category?: true
+    name?: true
+    type?: true
+    image?: true
     price?: true
-    UidUser?: true
+    amount?: true
+    total?: true
     created?: true
+    UserId?: true
   }
 
   export type OrdersCountAggregateInputType = {
     id?: true
-    product?: true
-    amount?: true
+    category?: true
+    name?: true
+    type?: true
+    image?: true
     price?: true
-    UidUser?: true
+    amount?: true
+    total?: true
     created?: true
+    UserId?: true
     _all?: true
   }
 
@@ -996,18 +1119,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: OrdersAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: OrdersSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: OrdersMinAggregateInputType
@@ -1038,22 +1149,22 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: OrdersCountAggregateInputType | true
-    _avg?: OrdersAvgAggregateInputType
-    _sum?: OrdersSumAggregateInputType
     _min?: OrdersMinAggregateInputType
     _max?: OrdersMaxAggregateInputType
   }
 
   export type OrdersGroupByOutputType = {
     id: string
-    product: string
-    amount: number
-    price: number
-    UidUser: string
+    category: string
+    name: string
+    type: string
+    image: string
+    price: string
+    amount: string
+    total: string
     created: Date
+    UserId: string
     _count: OrdersCountAggregateOutputType | null
-    _avg: OrdersAvgAggregateOutputType | null
-    _sum: OrdersSumAggregateOutputType | null
     _min: OrdersMinAggregateOutputType | null
     _max: OrdersMaxAggregateOutputType | null
   }
@@ -1074,52 +1185,86 @@ export namespace Prisma {
 
   export type OrdersSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    product?: boolean
-    amount?: boolean
+    category?: boolean
+    name?: boolean
+    type?: boolean
+    image?: boolean
     price?: boolean
-    UidUser?: boolean
+    amount?: boolean
+    total?: boolean
     created?: boolean
+    UserId?: boolean
+    User?: boolean | Checkout_infoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["orders"]>
 
   export type OrdersSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    product?: boolean
-    amount?: boolean
+    category?: boolean
+    name?: boolean
+    type?: boolean
+    image?: boolean
     price?: boolean
-    UidUser?: boolean
+    amount?: boolean
+    total?: boolean
     created?: boolean
+    UserId?: boolean
+    User?: boolean | Checkout_infoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["orders"]>
 
   export type OrdersSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    product?: boolean
-    amount?: boolean
+    category?: boolean
+    name?: boolean
+    type?: boolean
+    image?: boolean
     price?: boolean
-    UidUser?: boolean
+    amount?: boolean
+    total?: boolean
     created?: boolean
+    UserId?: boolean
+    User?: boolean | Checkout_infoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["orders"]>
 
   export type OrdersSelectScalar = {
     id?: boolean
-    product?: boolean
-    amount?: boolean
+    category?: boolean
+    name?: boolean
+    type?: boolean
+    image?: boolean
     price?: boolean
-    UidUser?: boolean
+    amount?: boolean
+    total?: boolean
     created?: boolean
+    UserId?: boolean
   }
 
-  export type OrdersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "product" | "amount" | "price" | "UidUser" | "created", ExtArgs["result"]["orders"]>
+  export type OrdersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "category" | "name" | "type" | "image" | "price" | "amount" | "total" | "created" | "UserId", ExtArgs["result"]["orders"]>
+  export type OrdersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | Checkout_infoDefaultArgs<ExtArgs>
+  }
+  export type OrdersIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | Checkout_infoDefaultArgs<ExtArgs>
+  }
+  export type OrdersIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | Checkout_infoDefaultArgs<ExtArgs>
+  }
 
   export type $OrdersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Orders"
-    objects: {}
+    objects: {
+      User: Prisma.$Checkout_infoPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      product: string
-      amount: number
-      price: number
-      UidUser: string
+      category: string
+      name: string
+      type: string
+      image: string
+      price: string
+      amount: string
+      total: string
       created: Date
+      UserId: string
     }, ExtArgs["result"]["orders"]>
     composites: {}
   }
@@ -1514,6 +1659,7 @@ export namespace Prisma {
    */
   export interface Prisma__OrdersClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    User<T extends Checkout_infoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, Checkout_infoDefaultArgs<ExtArgs>>): Prisma__Checkout_infoClient<$Result.GetResult<Prisma.$Checkout_infoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1544,11 +1690,15 @@ export namespace Prisma {
    */
   interface OrdersFieldRefs {
     readonly id: FieldRef<"Orders", 'String'>
-    readonly product: FieldRef<"Orders", 'String'>
-    readonly amount: FieldRef<"Orders", 'Int'>
-    readonly price: FieldRef<"Orders", 'Float'>
-    readonly UidUser: FieldRef<"Orders", 'String'>
+    readonly category: FieldRef<"Orders", 'String'>
+    readonly name: FieldRef<"Orders", 'String'>
+    readonly type: FieldRef<"Orders", 'String'>
+    readonly image: FieldRef<"Orders", 'String'>
+    readonly price: FieldRef<"Orders", 'String'>
+    readonly amount: FieldRef<"Orders", 'String'>
+    readonly total: FieldRef<"Orders", 'String'>
     readonly created: FieldRef<"Orders", 'DateTime'>
+    readonly UserId: FieldRef<"Orders", 'String'>
   }
     
 
@@ -1565,6 +1715,10 @@ export namespace Prisma {
      * Omit specific fields from the Orders
      */
     omit?: OrdersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrdersInclude<ExtArgs> | null
     /**
      * Filter, which Orders to fetch.
      */
@@ -1584,6 +1738,10 @@ export namespace Prisma {
      */
     omit?: OrdersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrdersInclude<ExtArgs> | null
+    /**
      * Filter, which Orders to fetch.
      */
     where: OrdersWhereUniqueInput
@@ -1601,6 +1759,10 @@ export namespace Prisma {
      * Omit specific fields from the Orders
      */
     omit?: OrdersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrdersInclude<ExtArgs> | null
     /**
      * Filter, which Orders to fetch.
      */
@@ -1650,6 +1812,10 @@ export namespace Prisma {
      */
     omit?: OrdersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrdersInclude<ExtArgs> | null
+    /**
      * Filter, which Orders to fetch.
      */
     where?: OrdersWhereInput
@@ -1698,6 +1864,10 @@ export namespace Prisma {
      */
     omit?: OrdersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrdersInclude<ExtArgs> | null
+    /**
      * Filter, which Orders to fetch.
      */
     where?: OrdersWhereInput
@@ -1741,6 +1911,10 @@ export namespace Prisma {
      */
     omit?: OrdersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrdersInclude<ExtArgs> | null
+    /**
      * The data needed to create a Orders.
      */
     data: XOR<OrdersCreateInput, OrdersUncheckedCreateInput>
@@ -1774,6 +1948,10 @@ export namespace Prisma {
      */
     data: OrdersCreateManyInput | OrdersCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrdersIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -1788,6 +1966,10 @@ export namespace Prisma {
      * Omit specific fields from the Orders
      */
     omit?: OrdersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrdersInclude<ExtArgs> | null
     /**
      * The data needed to update a Orders.
      */
@@ -1840,6 +2022,10 @@ export namespace Prisma {
      * Limit how many Orders to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrdersIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -1854,6 +2040,10 @@ export namespace Prisma {
      * Omit specific fields from the Orders
      */
     omit?: OrdersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrdersInclude<ExtArgs> | null
     /**
      * The filter to search for the Orders to update in case it exists.
      */
@@ -1880,6 +2070,10 @@ export namespace Prisma {
      * Omit specific fields from the Orders
      */
     omit?: OrdersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrdersInclude<ExtArgs> | null
     /**
      * Filter which Orders to delete.
      */
@@ -1912,6 +2106,1145 @@ export namespace Prisma {
      * Omit specific fields from the Orders
      */
     omit?: OrdersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrdersInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Checkout_info
+   */
+
+  export type AggregateCheckout_info = {
+    _count: Checkout_infoCountAggregateOutputType | null
+    _min: Checkout_infoMinAggregateOutputType | null
+    _max: Checkout_infoMaxAggregateOutputType | null
+  }
+
+  export type Checkout_infoMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    cpf: string | null
+    phone: string | null
+    cep: string | null
+    street: string | null
+    number: string | null
+    city: string | null
+    state: string | null
+    created: Date | null
+  }
+
+  export type Checkout_infoMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    cpf: string | null
+    phone: string | null
+    cep: string | null
+    street: string | null
+    number: string | null
+    city: string | null
+    state: string | null
+    created: Date | null
+  }
+
+  export type Checkout_infoCountAggregateOutputType = {
+    id: number
+    name: number
+    cpf: number
+    phone: number
+    cep: number
+    street: number
+    number: number
+    city: number
+    state: number
+    created: number
+    _all: number
+  }
+
+
+  export type Checkout_infoMinAggregateInputType = {
+    id?: true
+    name?: true
+    cpf?: true
+    phone?: true
+    cep?: true
+    street?: true
+    number?: true
+    city?: true
+    state?: true
+    created?: true
+  }
+
+  export type Checkout_infoMaxAggregateInputType = {
+    id?: true
+    name?: true
+    cpf?: true
+    phone?: true
+    cep?: true
+    street?: true
+    number?: true
+    city?: true
+    state?: true
+    created?: true
+  }
+
+  export type Checkout_infoCountAggregateInputType = {
+    id?: true
+    name?: true
+    cpf?: true
+    phone?: true
+    cep?: true
+    street?: true
+    number?: true
+    city?: true
+    state?: true
+    created?: true
+    _all?: true
+  }
+
+  export type Checkout_infoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Checkout_info to aggregate.
+     */
+    where?: Checkout_infoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Checkout_infos to fetch.
+     */
+    orderBy?: Checkout_infoOrderByWithRelationInput | Checkout_infoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: Checkout_infoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Checkout_infos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Checkout_infos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Checkout_infos
+    **/
+    _count?: true | Checkout_infoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Checkout_infoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Checkout_infoMaxAggregateInputType
+  }
+
+  export type GetCheckout_infoAggregateType<T extends Checkout_infoAggregateArgs> = {
+        [P in keyof T & keyof AggregateCheckout_info]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCheckout_info[P]>
+      : GetScalarType<T[P], AggregateCheckout_info[P]>
+  }
+
+
+
+
+  export type Checkout_infoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Checkout_infoWhereInput
+    orderBy?: Checkout_infoOrderByWithAggregationInput | Checkout_infoOrderByWithAggregationInput[]
+    by: Checkout_infoScalarFieldEnum[] | Checkout_infoScalarFieldEnum
+    having?: Checkout_infoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Checkout_infoCountAggregateInputType | true
+    _min?: Checkout_infoMinAggregateInputType
+    _max?: Checkout_infoMaxAggregateInputType
+  }
+
+  export type Checkout_infoGroupByOutputType = {
+    id: string
+    name: string
+    cpf: string
+    phone: string
+    cep: string
+    street: string
+    number: string
+    city: string
+    state: string
+    created: Date
+    _count: Checkout_infoCountAggregateOutputType | null
+    _min: Checkout_infoMinAggregateOutputType | null
+    _max: Checkout_infoMaxAggregateOutputType | null
+  }
+
+  type GetCheckout_infoGroupByPayload<T extends Checkout_infoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Checkout_infoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Checkout_infoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Checkout_infoGroupByOutputType[P]>
+            : GetScalarType<T[P], Checkout_infoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type Checkout_infoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    cpf?: boolean
+    phone?: boolean
+    cep?: boolean
+    street?: boolean
+    number?: boolean
+    city?: boolean
+    state?: boolean
+    created?: boolean
+    orders?: boolean | Checkout_info$ordersArgs<ExtArgs>
+    _count?: boolean | Checkout_infoCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["checkout_info"]>
+
+  export type Checkout_infoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    cpf?: boolean
+    phone?: boolean
+    cep?: boolean
+    street?: boolean
+    number?: boolean
+    city?: boolean
+    state?: boolean
+    created?: boolean
+  }, ExtArgs["result"]["checkout_info"]>
+
+  export type Checkout_infoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    cpf?: boolean
+    phone?: boolean
+    cep?: boolean
+    street?: boolean
+    number?: boolean
+    city?: boolean
+    state?: boolean
+    created?: boolean
+  }, ExtArgs["result"]["checkout_info"]>
+
+  export type Checkout_infoSelectScalar = {
+    id?: boolean
+    name?: boolean
+    cpf?: boolean
+    phone?: boolean
+    cep?: boolean
+    street?: boolean
+    number?: boolean
+    city?: boolean
+    state?: boolean
+    created?: boolean
+  }
+
+  export type Checkout_infoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "cpf" | "phone" | "cep" | "street" | "number" | "city" | "state" | "created", ExtArgs["result"]["checkout_info"]>
+  export type Checkout_infoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    orders?: boolean | Checkout_info$ordersArgs<ExtArgs>
+    _count?: boolean | Checkout_infoCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type Checkout_infoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type Checkout_infoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $Checkout_infoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Checkout_info"
+    objects: {
+      orders: Prisma.$OrdersPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      cpf: string
+      phone: string
+      cep: string
+      street: string
+      number: string
+      city: string
+      state: string
+      created: Date
+    }, ExtArgs["result"]["checkout_info"]>
+    composites: {}
+  }
+
+  type Checkout_infoGetPayload<S extends boolean | null | undefined | Checkout_infoDefaultArgs> = $Result.GetResult<Prisma.$Checkout_infoPayload, S>
+
+  type Checkout_infoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<Checkout_infoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Checkout_infoCountAggregateInputType | true
+    }
+
+  export interface Checkout_infoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Checkout_info'], meta: { name: 'Checkout_info' } }
+    /**
+     * Find zero or one Checkout_info that matches the filter.
+     * @param {Checkout_infoFindUniqueArgs} args - Arguments to find a Checkout_info
+     * @example
+     * // Get one Checkout_info
+     * const checkout_info = await prisma.checkout_info.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends Checkout_infoFindUniqueArgs>(args: SelectSubset<T, Checkout_infoFindUniqueArgs<ExtArgs>>): Prisma__Checkout_infoClient<$Result.GetResult<Prisma.$Checkout_infoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Checkout_info that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {Checkout_infoFindUniqueOrThrowArgs} args - Arguments to find a Checkout_info
+     * @example
+     * // Get one Checkout_info
+     * const checkout_info = await prisma.checkout_info.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends Checkout_infoFindUniqueOrThrowArgs>(args: SelectSubset<T, Checkout_infoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__Checkout_infoClient<$Result.GetResult<Prisma.$Checkout_infoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Checkout_info that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Checkout_infoFindFirstArgs} args - Arguments to find a Checkout_info
+     * @example
+     * // Get one Checkout_info
+     * const checkout_info = await prisma.checkout_info.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends Checkout_infoFindFirstArgs>(args?: SelectSubset<T, Checkout_infoFindFirstArgs<ExtArgs>>): Prisma__Checkout_infoClient<$Result.GetResult<Prisma.$Checkout_infoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Checkout_info that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Checkout_infoFindFirstOrThrowArgs} args - Arguments to find a Checkout_info
+     * @example
+     * // Get one Checkout_info
+     * const checkout_info = await prisma.checkout_info.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends Checkout_infoFindFirstOrThrowArgs>(args?: SelectSubset<T, Checkout_infoFindFirstOrThrowArgs<ExtArgs>>): Prisma__Checkout_infoClient<$Result.GetResult<Prisma.$Checkout_infoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Checkout_infos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Checkout_infoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Checkout_infos
+     * const checkout_infos = await prisma.checkout_info.findMany()
+     * 
+     * // Get first 10 Checkout_infos
+     * const checkout_infos = await prisma.checkout_info.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const checkout_infoWithIdOnly = await prisma.checkout_info.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends Checkout_infoFindManyArgs>(args?: SelectSubset<T, Checkout_infoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Checkout_infoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Checkout_info.
+     * @param {Checkout_infoCreateArgs} args - Arguments to create a Checkout_info.
+     * @example
+     * // Create one Checkout_info
+     * const Checkout_info = await prisma.checkout_info.create({
+     *   data: {
+     *     // ... data to create a Checkout_info
+     *   }
+     * })
+     * 
+     */
+    create<T extends Checkout_infoCreateArgs>(args: SelectSubset<T, Checkout_infoCreateArgs<ExtArgs>>): Prisma__Checkout_infoClient<$Result.GetResult<Prisma.$Checkout_infoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Checkout_infos.
+     * @param {Checkout_infoCreateManyArgs} args - Arguments to create many Checkout_infos.
+     * @example
+     * // Create many Checkout_infos
+     * const checkout_info = await prisma.checkout_info.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends Checkout_infoCreateManyArgs>(args?: SelectSubset<T, Checkout_infoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Checkout_infos and returns the data saved in the database.
+     * @param {Checkout_infoCreateManyAndReturnArgs} args - Arguments to create many Checkout_infos.
+     * @example
+     * // Create many Checkout_infos
+     * const checkout_info = await prisma.checkout_info.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Checkout_infos and only return the `id`
+     * const checkout_infoWithIdOnly = await prisma.checkout_info.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends Checkout_infoCreateManyAndReturnArgs>(args?: SelectSubset<T, Checkout_infoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Checkout_infoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Checkout_info.
+     * @param {Checkout_infoDeleteArgs} args - Arguments to delete one Checkout_info.
+     * @example
+     * // Delete one Checkout_info
+     * const Checkout_info = await prisma.checkout_info.delete({
+     *   where: {
+     *     // ... filter to delete one Checkout_info
+     *   }
+     * })
+     * 
+     */
+    delete<T extends Checkout_infoDeleteArgs>(args: SelectSubset<T, Checkout_infoDeleteArgs<ExtArgs>>): Prisma__Checkout_infoClient<$Result.GetResult<Prisma.$Checkout_infoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Checkout_info.
+     * @param {Checkout_infoUpdateArgs} args - Arguments to update one Checkout_info.
+     * @example
+     * // Update one Checkout_info
+     * const checkout_info = await prisma.checkout_info.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends Checkout_infoUpdateArgs>(args: SelectSubset<T, Checkout_infoUpdateArgs<ExtArgs>>): Prisma__Checkout_infoClient<$Result.GetResult<Prisma.$Checkout_infoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Checkout_infos.
+     * @param {Checkout_infoDeleteManyArgs} args - Arguments to filter Checkout_infos to delete.
+     * @example
+     * // Delete a few Checkout_infos
+     * const { count } = await prisma.checkout_info.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends Checkout_infoDeleteManyArgs>(args?: SelectSubset<T, Checkout_infoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Checkout_infos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Checkout_infoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Checkout_infos
+     * const checkout_info = await prisma.checkout_info.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends Checkout_infoUpdateManyArgs>(args: SelectSubset<T, Checkout_infoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Checkout_infos and returns the data updated in the database.
+     * @param {Checkout_infoUpdateManyAndReturnArgs} args - Arguments to update many Checkout_infos.
+     * @example
+     * // Update many Checkout_infos
+     * const checkout_info = await prisma.checkout_info.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Checkout_infos and only return the `id`
+     * const checkout_infoWithIdOnly = await prisma.checkout_info.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends Checkout_infoUpdateManyAndReturnArgs>(args: SelectSubset<T, Checkout_infoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Checkout_infoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Checkout_info.
+     * @param {Checkout_infoUpsertArgs} args - Arguments to update or create a Checkout_info.
+     * @example
+     * // Update or create a Checkout_info
+     * const checkout_info = await prisma.checkout_info.upsert({
+     *   create: {
+     *     // ... data to create a Checkout_info
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Checkout_info we want to update
+     *   }
+     * })
+     */
+    upsert<T extends Checkout_infoUpsertArgs>(args: SelectSubset<T, Checkout_infoUpsertArgs<ExtArgs>>): Prisma__Checkout_infoClient<$Result.GetResult<Prisma.$Checkout_infoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Checkout_infos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Checkout_infoCountArgs} args - Arguments to filter Checkout_infos to count.
+     * @example
+     * // Count the number of Checkout_infos
+     * const count = await prisma.checkout_info.count({
+     *   where: {
+     *     // ... the filter for the Checkout_infos we want to count
+     *   }
+     * })
+    **/
+    count<T extends Checkout_infoCountArgs>(
+      args?: Subset<T, Checkout_infoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Checkout_infoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Checkout_info.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Checkout_infoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Checkout_infoAggregateArgs>(args: Subset<T, Checkout_infoAggregateArgs>): Prisma.PrismaPromise<GetCheckout_infoAggregateType<T>>
+
+    /**
+     * Group by Checkout_info.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Checkout_infoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends Checkout_infoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: Checkout_infoGroupByArgs['orderBy'] }
+        : { orderBy?: Checkout_infoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, Checkout_infoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCheckout_infoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Checkout_info model
+   */
+  readonly fields: Checkout_infoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Checkout_info.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__Checkout_infoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    orders<T extends Checkout_info$ordersArgs<ExtArgs> = {}>(args?: Subset<T, Checkout_info$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrdersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Checkout_info model
+   */
+  interface Checkout_infoFieldRefs {
+    readonly id: FieldRef<"Checkout_info", 'String'>
+    readonly name: FieldRef<"Checkout_info", 'String'>
+    readonly cpf: FieldRef<"Checkout_info", 'String'>
+    readonly phone: FieldRef<"Checkout_info", 'String'>
+    readonly cep: FieldRef<"Checkout_info", 'String'>
+    readonly street: FieldRef<"Checkout_info", 'String'>
+    readonly number: FieldRef<"Checkout_info", 'String'>
+    readonly city: FieldRef<"Checkout_info", 'String'>
+    readonly state: FieldRef<"Checkout_info", 'String'>
+    readonly created: FieldRef<"Checkout_info", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Checkout_info findUnique
+   */
+  export type Checkout_infoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Checkout_info
+     */
+    select?: Checkout_infoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Checkout_info
+     */
+    omit?: Checkout_infoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Checkout_infoInclude<ExtArgs> | null
+    /**
+     * Filter, which Checkout_info to fetch.
+     */
+    where: Checkout_infoWhereUniqueInput
+  }
+
+  /**
+   * Checkout_info findUniqueOrThrow
+   */
+  export type Checkout_infoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Checkout_info
+     */
+    select?: Checkout_infoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Checkout_info
+     */
+    omit?: Checkout_infoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Checkout_infoInclude<ExtArgs> | null
+    /**
+     * Filter, which Checkout_info to fetch.
+     */
+    where: Checkout_infoWhereUniqueInput
+  }
+
+  /**
+   * Checkout_info findFirst
+   */
+  export type Checkout_infoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Checkout_info
+     */
+    select?: Checkout_infoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Checkout_info
+     */
+    omit?: Checkout_infoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Checkout_infoInclude<ExtArgs> | null
+    /**
+     * Filter, which Checkout_info to fetch.
+     */
+    where?: Checkout_infoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Checkout_infos to fetch.
+     */
+    orderBy?: Checkout_infoOrderByWithRelationInput | Checkout_infoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Checkout_infos.
+     */
+    cursor?: Checkout_infoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Checkout_infos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Checkout_infos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Checkout_infos.
+     */
+    distinct?: Checkout_infoScalarFieldEnum | Checkout_infoScalarFieldEnum[]
+  }
+
+  /**
+   * Checkout_info findFirstOrThrow
+   */
+  export type Checkout_infoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Checkout_info
+     */
+    select?: Checkout_infoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Checkout_info
+     */
+    omit?: Checkout_infoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Checkout_infoInclude<ExtArgs> | null
+    /**
+     * Filter, which Checkout_info to fetch.
+     */
+    where?: Checkout_infoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Checkout_infos to fetch.
+     */
+    orderBy?: Checkout_infoOrderByWithRelationInput | Checkout_infoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Checkout_infos.
+     */
+    cursor?: Checkout_infoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Checkout_infos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Checkout_infos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Checkout_infos.
+     */
+    distinct?: Checkout_infoScalarFieldEnum | Checkout_infoScalarFieldEnum[]
+  }
+
+  /**
+   * Checkout_info findMany
+   */
+  export type Checkout_infoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Checkout_info
+     */
+    select?: Checkout_infoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Checkout_info
+     */
+    omit?: Checkout_infoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Checkout_infoInclude<ExtArgs> | null
+    /**
+     * Filter, which Checkout_infos to fetch.
+     */
+    where?: Checkout_infoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Checkout_infos to fetch.
+     */
+    orderBy?: Checkout_infoOrderByWithRelationInput | Checkout_infoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Checkout_infos.
+     */
+    cursor?: Checkout_infoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Checkout_infos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Checkout_infos.
+     */
+    skip?: number
+    distinct?: Checkout_infoScalarFieldEnum | Checkout_infoScalarFieldEnum[]
+  }
+
+  /**
+   * Checkout_info create
+   */
+  export type Checkout_infoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Checkout_info
+     */
+    select?: Checkout_infoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Checkout_info
+     */
+    omit?: Checkout_infoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Checkout_infoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Checkout_info.
+     */
+    data: XOR<Checkout_infoCreateInput, Checkout_infoUncheckedCreateInput>
+  }
+
+  /**
+   * Checkout_info createMany
+   */
+  export type Checkout_infoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Checkout_infos.
+     */
+    data: Checkout_infoCreateManyInput | Checkout_infoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Checkout_info createManyAndReturn
+   */
+  export type Checkout_infoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Checkout_info
+     */
+    select?: Checkout_infoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Checkout_info
+     */
+    omit?: Checkout_infoOmit<ExtArgs> | null
+    /**
+     * The data used to create many Checkout_infos.
+     */
+    data: Checkout_infoCreateManyInput | Checkout_infoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Checkout_info update
+   */
+  export type Checkout_infoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Checkout_info
+     */
+    select?: Checkout_infoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Checkout_info
+     */
+    omit?: Checkout_infoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Checkout_infoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Checkout_info.
+     */
+    data: XOR<Checkout_infoUpdateInput, Checkout_infoUncheckedUpdateInput>
+    /**
+     * Choose, which Checkout_info to update.
+     */
+    where: Checkout_infoWhereUniqueInput
+  }
+
+  /**
+   * Checkout_info updateMany
+   */
+  export type Checkout_infoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Checkout_infos.
+     */
+    data: XOR<Checkout_infoUpdateManyMutationInput, Checkout_infoUncheckedUpdateManyInput>
+    /**
+     * Filter which Checkout_infos to update
+     */
+    where?: Checkout_infoWhereInput
+    /**
+     * Limit how many Checkout_infos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Checkout_info updateManyAndReturn
+   */
+  export type Checkout_infoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Checkout_info
+     */
+    select?: Checkout_infoSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Checkout_info
+     */
+    omit?: Checkout_infoOmit<ExtArgs> | null
+    /**
+     * The data used to update Checkout_infos.
+     */
+    data: XOR<Checkout_infoUpdateManyMutationInput, Checkout_infoUncheckedUpdateManyInput>
+    /**
+     * Filter which Checkout_infos to update
+     */
+    where?: Checkout_infoWhereInput
+    /**
+     * Limit how many Checkout_infos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Checkout_info upsert
+   */
+  export type Checkout_infoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Checkout_info
+     */
+    select?: Checkout_infoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Checkout_info
+     */
+    omit?: Checkout_infoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Checkout_infoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Checkout_info to update in case it exists.
+     */
+    where: Checkout_infoWhereUniqueInput
+    /**
+     * In case the Checkout_info found by the `where` argument doesn't exist, create a new Checkout_info with this data.
+     */
+    create: XOR<Checkout_infoCreateInput, Checkout_infoUncheckedCreateInput>
+    /**
+     * In case the Checkout_info was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<Checkout_infoUpdateInput, Checkout_infoUncheckedUpdateInput>
+  }
+
+  /**
+   * Checkout_info delete
+   */
+  export type Checkout_infoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Checkout_info
+     */
+    select?: Checkout_infoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Checkout_info
+     */
+    omit?: Checkout_infoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Checkout_infoInclude<ExtArgs> | null
+    /**
+     * Filter which Checkout_info to delete.
+     */
+    where: Checkout_infoWhereUniqueInput
+  }
+
+  /**
+   * Checkout_info deleteMany
+   */
+  export type Checkout_infoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Checkout_infos to delete
+     */
+    where?: Checkout_infoWhereInput
+    /**
+     * Limit how many Checkout_infos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Checkout_info.orders
+   */
+  export type Checkout_info$ordersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Orders
+     */
+    select?: OrdersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Orders
+     */
+    omit?: OrdersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrdersInclude<ExtArgs> | null
+    where?: OrdersWhereInput
+    orderBy?: OrdersOrderByWithRelationInput | OrdersOrderByWithRelationInput[]
+    cursor?: OrdersWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OrdersScalarFieldEnum | OrdersScalarFieldEnum[]
+  }
+
+  /**
+   * Checkout_info without action
+   */
+  export type Checkout_infoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Checkout_info
+     */
+    select?: Checkout_infoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Checkout_info
+     */
+    omit?: Checkout_infoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Checkout_infoInclude<ExtArgs> | null
   }
 
 
@@ -1931,14 +3264,34 @@ export namespace Prisma {
 
   export const OrdersScalarFieldEnum: {
     id: 'id',
-    product: 'product',
-    amount: 'amount',
+    category: 'category',
+    name: 'name',
+    type: 'type',
+    image: 'image',
     price: 'price',
-    UidUser: 'UidUser',
-    created: 'created'
+    amount: 'amount',
+    total: 'total',
+    created: 'created',
+    UserId: 'UserId'
   };
 
   export type OrdersScalarFieldEnum = (typeof OrdersScalarFieldEnum)[keyof typeof OrdersScalarFieldEnum]
+
+
+  export const Checkout_infoScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    cpf: 'cpf',
+    phone: 'phone',
+    cep: 'cep',
+    street: 'street',
+    number: 'number',
+    city: 'city',
+    state: 'state',
+    created: 'created'
+  };
+
+  export type Checkout_infoScalarFieldEnum = (typeof Checkout_infoScalarFieldEnum)[keyof typeof Checkout_infoScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -1977,34 +3330,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float'
-   */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float[]'
-   */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -2016,6 +3341,20 @@ export namespace Prisma {
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
   /**
    * Deep Input Types
    */
@@ -2026,20 +3365,30 @@ export namespace Prisma {
     OR?: OrdersWhereInput[]
     NOT?: OrdersWhereInput | OrdersWhereInput[]
     id?: StringFilter<"Orders"> | string
-    product?: StringFilter<"Orders"> | string
-    amount?: IntFilter<"Orders"> | number
-    price?: FloatFilter<"Orders"> | number
-    UidUser?: StringFilter<"Orders"> | string
+    category?: StringFilter<"Orders"> | string
+    name?: StringFilter<"Orders"> | string
+    type?: StringFilter<"Orders"> | string
+    image?: StringFilter<"Orders"> | string
+    price?: StringFilter<"Orders"> | string
+    amount?: StringFilter<"Orders"> | string
+    total?: StringFilter<"Orders"> | string
     created?: DateTimeFilter<"Orders"> | Date | string
+    UserId?: StringFilter<"Orders"> | string
+    User?: XOR<Checkout_infoScalarRelationFilter, Checkout_infoWhereInput>
   }
 
   export type OrdersOrderByWithRelationInput = {
     id?: SortOrder
-    product?: SortOrder
-    amount?: SortOrder
+    category?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    image?: SortOrder
     price?: SortOrder
-    UidUser?: SortOrder
+    amount?: SortOrder
+    total?: SortOrder
     created?: SortOrder
+    UserId?: SortOrder
+    User?: Checkout_infoOrderByWithRelationInput
   }
 
   export type OrdersWhereUniqueInput = Prisma.AtLeast<{
@@ -2047,25 +3396,32 @@ export namespace Prisma {
     AND?: OrdersWhereInput | OrdersWhereInput[]
     OR?: OrdersWhereInput[]
     NOT?: OrdersWhereInput | OrdersWhereInput[]
-    product?: StringFilter<"Orders"> | string
-    amount?: IntFilter<"Orders"> | number
-    price?: FloatFilter<"Orders"> | number
-    UidUser?: StringFilter<"Orders"> | string
+    category?: StringFilter<"Orders"> | string
+    name?: StringFilter<"Orders"> | string
+    type?: StringFilter<"Orders"> | string
+    image?: StringFilter<"Orders"> | string
+    price?: StringFilter<"Orders"> | string
+    amount?: StringFilter<"Orders"> | string
+    total?: StringFilter<"Orders"> | string
     created?: DateTimeFilter<"Orders"> | Date | string
+    UserId?: StringFilter<"Orders"> | string
+    User?: XOR<Checkout_infoScalarRelationFilter, Checkout_infoWhereInput>
   }, "id">
 
   export type OrdersOrderByWithAggregationInput = {
     id?: SortOrder
-    product?: SortOrder
-    amount?: SortOrder
+    category?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    image?: SortOrder
     price?: SortOrder
-    UidUser?: SortOrder
+    amount?: SortOrder
+    total?: SortOrder
     created?: SortOrder
+    UserId?: SortOrder
     _count?: OrdersCountOrderByAggregateInput
-    _avg?: OrdersAvgOrderByAggregateInput
     _max?: OrdersMaxOrderByAggregateInput
     _min?: OrdersMinOrderByAggregateInput
-    _sum?: OrdersSumOrderByAggregateInput
   }
 
   export type OrdersScalarWhereWithAggregatesInput = {
@@ -2073,73 +3429,279 @@ export namespace Prisma {
     OR?: OrdersScalarWhereWithAggregatesInput[]
     NOT?: OrdersScalarWhereWithAggregatesInput | OrdersScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Orders"> | string
-    product?: StringWithAggregatesFilter<"Orders"> | string
-    amount?: IntWithAggregatesFilter<"Orders"> | number
-    price?: FloatWithAggregatesFilter<"Orders"> | number
-    UidUser?: StringWithAggregatesFilter<"Orders"> | string
+    category?: StringWithAggregatesFilter<"Orders"> | string
+    name?: StringWithAggregatesFilter<"Orders"> | string
+    type?: StringWithAggregatesFilter<"Orders"> | string
+    image?: StringWithAggregatesFilter<"Orders"> | string
+    price?: StringWithAggregatesFilter<"Orders"> | string
+    amount?: StringWithAggregatesFilter<"Orders"> | string
+    total?: StringWithAggregatesFilter<"Orders"> | string
     created?: DateTimeWithAggregatesFilter<"Orders"> | Date | string
+    UserId?: StringWithAggregatesFilter<"Orders"> | string
+  }
+
+  export type Checkout_infoWhereInput = {
+    AND?: Checkout_infoWhereInput | Checkout_infoWhereInput[]
+    OR?: Checkout_infoWhereInput[]
+    NOT?: Checkout_infoWhereInput | Checkout_infoWhereInput[]
+    id?: StringFilter<"Checkout_info"> | string
+    name?: StringFilter<"Checkout_info"> | string
+    cpf?: StringFilter<"Checkout_info"> | string
+    phone?: StringFilter<"Checkout_info"> | string
+    cep?: StringFilter<"Checkout_info"> | string
+    street?: StringFilter<"Checkout_info"> | string
+    number?: StringFilter<"Checkout_info"> | string
+    city?: StringFilter<"Checkout_info"> | string
+    state?: StringFilter<"Checkout_info"> | string
+    created?: DateTimeFilter<"Checkout_info"> | Date | string
+    orders?: OrdersListRelationFilter
+  }
+
+  export type Checkout_infoOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    cpf?: SortOrder
+    phone?: SortOrder
+    cep?: SortOrder
+    street?: SortOrder
+    number?: SortOrder
+    city?: SortOrder
+    state?: SortOrder
+    created?: SortOrder
+    orders?: OrdersOrderByRelationAggregateInput
+  }
+
+  export type Checkout_infoWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: Checkout_infoWhereInput | Checkout_infoWhereInput[]
+    OR?: Checkout_infoWhereInput[]
+    NOT?: Checkout_infoWhereInput | Checkout_infoWhereInput[]
+    name?: StringFilter<"Checkout_info"> | string
+    cpf?: StringFilter<"Checkout_info"> | string
+    phone?: StringFilter<"Checkout_info"> | string
+    cep?: StringFilter<"Checkout_info"> | string
+    street?: StringFilter<"Checkout_info"> | string
+    number?: StringFilter<"Checkout_info"> | string
+    city?: StringFilter<"Checkout_info"> | string
+    state?: StringFilter<"Checkout_info"> | string
+    created?: DateTimeFilter<"Checkout_info"> | Date | string
+    orders?: OrdersListRelationFilter
+  }, "id">
+
+  export type Checkout_infoOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    cpf?: SortOrder
+    phone?: SortOrder
+    cep?: SortOrder
+    street?: SortOrder
+    number?: SortOrder
+    city?: SortOrder
+    state?: SortOrder
+    created?: SortOrder
+    _count?: Checkout_infoCountOrderByAggregateInput
+    _max?: Checkout_infoMaxOrderByAggregateInput
+    _min?: Checkout_infoMinOrderByAggregateInput
+  }
+
+  export type Checkout_infoScalarWhereWithAggregatesInput = {
+    AND?: Checkout_infoScalarWhereWithAggregatesInput | Checkout_infoScalarWhereWithAggregatesInput[]
+    OR?: Checkout_infoScalarWhereWithAggregatesInput[]
+    NOT?: Checkout_infoScalarWhereWithAggregatesInput | Checkout_infoScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Checkout_info"> | string
+    name?: StringWithAggregatesFilter<"Checkout_info"> | string
+    cpf?: StringWithAggregatesFilter<"Checkout_info"> | string
+    phone?: StringWithAggregatesFilter<"Checkout_info"> | string
+    cep?: StringWithAggregatesFilter<"Checkout_info"> | string
+    street?: StringWithAggregatesFilter<"Checkout_info"> | string
+    number?: StringWithAggregatesFilter<"Checkout_info"> | string
+    city?: StringWithAggregatesFilter<"Checkout_info"> | string
+    state?: StringWithAggregatesFilter<"Checkout_info"> | string
+    created?: DateTimeWithAggregatesFilter<"Checkout_info"> | Date | string
   }
 
   export type OrdersCreateInput = {
     id?: string
-    product: string
-    amount: number
-    price: number
-    UidUser: string
+    category: string
+    name: string
+    type: string
+    image: string
+    price: string
+    amount: string
+    total: string
     created?: Date | string
+    User: Checkout_infoCreateNestedOneWithoutOrdersInput
   }
 
   export type OrdersUncheckedCreateInput = {
     id?: string
-    product: string
-    amount: number
-    price: number
-    UidUser: string
+    category: string
+    name: string
+    type: string
+    image: string
+    price: string
+    amount: string
+    total: string
     created?: Date | string
+    UserId: string
   }
 
   export type OrdersUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    product?: StringFieldUpdateOperationsInput | string
-    amount?: IntFieldUpdateOperationsInput | number
-    price?: FloatFieldUpdateOperationsInput | number
-    UidUser?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    price?: StringFieldUpdateOperationsInput | string
+    amount?: StringFieldUpdateOperationsInput | string
+    total?: StringFieldUpdateOperationsInput | string
     created?: DateTimeFieldUpdateOperationsInput | Date | string
+    User?: Checkout_infoUpdateOneRequiredWithoutOrdersNestedInput
   }
 
   export type OrdersUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    product?: StringFieldUpdateOperationsInput | string
-    amount?: IntFieldUpdateOperationsInput | number
-    price?: FloatFieldUpdateOperationsInput | number
-    UidUser?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    price?: StringFieldUpdateOperationsInput | string
+    amount?: StringFieldUpdateOperationsInput | string
+    total?: StringFieldUpdateOperationsInput | string
     created?: DateTimeFieldUpdateOperationsInput | Date | string
+    UserId?: StringFieldUpdateOperationsInput | string
   }
 
   export type OrdersCreateManyInput = {
     id?: string
-    product: string
-    amount: number
-    price: number
-    UidUser: string
+    category: string
+    name: string
+    type: string
+    image: string
+    price: string
+    amount: string
+    total: string
     created?: Date | string
+    UserId: string
   }
 
   export type OrdersUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    product?: StringFieldUpdateOperationsInput | string
-    amount?: IntFieldUpdateOperationsInput | number
-    price?: FloatFieldUpdateOperationsInput | number
-    UidUser?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    price?: StringFieldUpdateOperationsInput | string
+    amount?: StringFieldUpdateOperationsInput | string
+    total?: StringFieldUpdateOperationsInput | string
     created?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OrdersUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    product?: StringFieldUpdateOperationsInput | string
-    amount?: IntFieldUpdateOperationsInput | number
-    price?: FloatFieldUpdateOperationsInput | number
-    UidUser?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    price?: StringFieldUpdateOperationsInput | string
+    amount?: StringFieldUpdateOperationsInput | string
+    total?: StringFieldUpdateOperationsInput | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    UserId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type Checkout_infoCreateInput = {
+    id?: string
+    name: string
+    cpf: string
+    phone: string
+    cep: string
+    street: string
+    number: string
+    city: string
+    state: string
+    created?: Date | string
+    orders?: OrdersCreateNestedManyWithoutUserInput
+  }
+
+  export type Checkout_infoUncheckedCreateInput = {
+    id?: string
+    name: string
+    cpf: string
+    phone: string
+    cep: string
+    street: string
+    number: string
+    city: string
+    state: string
+    created?: Date | string
+    orders?: OrdersUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type Checkout_infoUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    cpf?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    cep?: StringFieldUpdateOperationsInput | string
+    street?: StringFieldUpdateOperationsInput | string
+    number?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    orders?: OrdersUpdateManyWithoutUserNestedInput
+  }
+
+  export type Checkout_infoUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    cpf?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    cep?: StringFieldUpdateOperationsInput | string
+    street?: StringFieldUpdateOperationsInput | string
+    number?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    orders?: OrdersUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type Checkout_infoCreateManyInput = {
+    id?: string
+    name: string
+    cpf: string
+    phone: string
+    cep: string
+    street: string
+    number: string
+    city: string
+    state: string
+    created?: Date | string
+  }
+
+  export type Checkout_infoUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    cpf?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    cep?: StringFieldUpdateOperationsInput | string
+    street?: StringFieldUpdateOperationsInput | string
+    number?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Checkout_infoUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    cpf?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    cep?: StringFieldUpdateOperationsInput | string
+    street?: StringFieldUpdateOperationsInput | string
+    number?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
     created?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -2158,28 +3720,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type FloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -2191,41 +3731,48 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type OrdersCountOrderByAggregateInput = {
-    id?: SortOrder
-    product?: SortOrder
-    amount?: SortOrder
-    price?: SortOrder
-    UidUser?: SortOrder
-    created?: SortOrder
+  export type Checkout_infoScalarRelationFilter = {
+    is?: Checkout_infoWhereInput
+    isNot?: Checkout_infoWhereInput
   }
 
-  export type OrdersAvgOrderByAggregateInput = {
-    amount?: SortOrder
+  export type OrdersCountOrderByAggregateInput = {
+    id?: SortOrder
+    category?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    image?: SortOrder
     price?: SortOrder
+    amount?: SortOrder
+    total?: SortOrder
+    created?: SortOrder
+    UserId?: SortOrder
   }
 
   export type OrdersMaxOrderByAggregateInput = {
     id?: SortOrder
-    product?: SortOrder
-    amount?: SortOrder
+    category?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    image?: SortOrder
     price?: SortOrder
-    UidUser?: SortOrder
+    amount?: SortOrder
+    total?: SortOrder
     created?: SortOrder
+    UserId?: SortOrder
   }
 
   export type OrdersMinOrderByAggregateInput = {
     id?: SortOrder
-    product?: SortOrder
-    amount?: SortOrder
+    category?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    image?: SortOrder
     price?: SortOrder
-    UidUser?: SortOrder
+    amount?: SortOrder
+    total?: SortOrder
     created?: SortOrder
-  }
-
-  export type OrdersSumOrderByAggregateInput = {
-    amount?: SortOrder
-    price?: SortOrder
+    UserId?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -2246,38 +3793,6 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
-  }
-
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -2292,28 +3807,117 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type OrdersListRelationFilter = {
+    every?: OrdersWhereInput
+    some?: OrdersWhereInput
+    none?: OrdersWhereInput
+  }
+
+  export type OrdersOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type Checkout_infoCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    cpf?: SortOrder
+    phone?: SortOrder
+    cep?: SortOrder
+    street?: SortOrder
+    number?: SortOrder
+    city?: SortOrder
+    state?: SortOrder
+    created?: SortOrder
+  }
+
+  export type Checkout_infoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    cpf?: SortOrder
+    phone?: SortOrder
+    cep?: SortOrder
+    street?: SortOrder
+    number?: SortOrder
+    city?: SortOrder
+    state?: SortOrder
+    created?: SortOrder
+  }
+
+  export type Checkout_infoMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    cpf?: SortOrder
+    phone?: SortOrder
+    cep?: SortOrder
+    street?: SortOrder
+    number?: SortOrder
+    city?: SortOrder
+    state?: SortOrder
+    created?: SortOrder
+  }
+
+  export type Checkout_infoCreateNestedOneWithoutOrdersInput = {
+    create?: XOR<Checkout_infoCreateWithoutOrdersInput, Checkout_infoUncheckedCreateWithoutOrdersInput>
+    connectOrCreate?: Checkout_infoCreateOrConnectWithoutOrdersInput
+    connect?: Checkout_infoWhereUniqueInput
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type FloatFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type Checkout_infoUpdateOneRequiredWithoutOrdersNestedInput = {
+    create?: XOR<Checkout_infoCreateWithoutOrdersInput, Checkout_infoUncheckedCreateWithoutOrdersInput>
+    connectOrCreate?: Checkout_infoCreateOrConnectWithoutOrdersInput
+    upsert?: Checkout_infoUpsertWithoutOrdersInput
+    connect?: Checkout_infoWhereUniqueInput
+    update?: XOR<XOR<Checkout_infoUpdateToOneWithWhereWithoutOrdersInput, Checkout_infoUpdateWithoutOrdersInput>, Checkout_infoUncheckedUpdateWithoutOrdersInput>
+  }
+
+  export type OrdersCreateNestedManyWithoutUserInput = {
+    create?: XOR<OrdersCreateWithoutUserInput, OrdersUncheckedCreateWithoutUserInput> | OrdersCreateWithoutUserInput[] | OrdersUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: OrdersCreateOrConnectWithoutUserInput | OrdersCreateOrConnectWithoutUserInput[]
+    createMany?: OrdersCreateManyUserInputEnvelope
+    connect?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
+  }
+
+  export type OrdersUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<OrdersCreateWithoutUserInput, OrdersUncheckedCreateWithoutUserInput> | OrdersCreateWithoutUserInput[] | OrdersUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: OrdersCreateOrConnectWithoutUserInput | OrdersCreateOrConnectWithoutUserInput[]
+    createMany?: OrdersCreateManyUserInputEnvelope
+    connect?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
+  }
+
+  export type OrdersUpdateManyWithoutUserNestedInput = {
+    create?: XOR<OrdersCreateWithoutUserInput, OrdersUncheckedCreateWithoutUserInput> | OrdersCreateWithoutUserInput[] | OrdersUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: OrdersCreateOrConnectWithoutUserInput | OrdersCreateOrConnectWithoutUserInput[]
+    upsert?: OrdersUpsertWithWhereUniqueWithoutUserInput | OrdersUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: OrdersCreateManyUserInputEnvelope
+    set?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
+    disconnect?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
+    delete?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
+    connect?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
+    update?: OrdersUpdateWithWhereUniqueWithoutUserInput | OrdersUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: OrdersUpdateManyWithWhereWithoutUserInput | OrdersUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: OrdersScalarWhereInput | OrdersScalarWhereInput[]
+  }
+
+  export type OrdersUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<OrdersCreateWithoutUserInput, OrdersUncheckedCreateWithoutUserInput> | OrdersCreateWithoutUserInput[] | OrdersUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: OrdersCreateOrConnectWithoutUserInput | OrdersCreateOrConnectWithoutUserInput[]
+    upsert?: OrdersUpsertWithWhereUniqueWithoutUserInput | OrdersUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: OrdersCreateManyUserInputEnvelope
+    set?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
+    disconnect?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
+    delete?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
+    connect?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
+    update?: OrdersUpdateWithWhereUniqueWithoutUserInput | OrdersUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: OrdersUpdateManyWithWhereWithoutUserInput | OrdersUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: OrdersScalarWhereInput | OrdersScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -2328,28 +3932,6 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
-  }
-
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -2380,7 +3962,7 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+  export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
     notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -2388,28 +3970,7 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -2424,6 +3985,188 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type Checkout_infoCreateWithoutOrdersInput = {
+    id?: string
+    name: string
+    cpf: string
+    phone: string
+    cep: string
+    street: string
+    number: string
+    city: string
+    state: string
+    created?: Date | string
+  }
+
+  export type Checkout_infoUncheckedCreateWithoutOrdersInput = {
+    id?: string
+    name: string
+    cpf: string
+    phone: string
+    cep: string
+    street: string
+    number: string
+    city: string
+    state: string
+    created?: Date | string
+  }
+
+  export type Checkout_infoCreateOrConnectWithoutOrdersInput = {
+    where: Checkout_infoWhereUniqueInput
+    create: XOR<Checkout_infoCreateWithoutOrdersInput, Checkout_infoUncheckedCreateWithoutOrdersInput>
+  }
+
+  export type Checkout_infoUpsertWithoutOrdersInput = {
+    update: XOR<Checkout_infoUpdateWithoutOrdersInput, Checkout_infoUncheckedUpdateWithoutOrdersInput>
+    create: XOR<Checkout_infoCreateWithoutOrdersInput, Checkout_infoUncheckedCreateWithoutOrdersInput>
+    where?: Checkout_infoWhereInput
+  }
+
+  export type Checkout_infoUpdateToOneWithWhereWithoutOrdersInput = {
+    where?: Checkout_infoWhereInput
+    data: XOR<Checkout_infoUpdateWithoutOrdersInput, Checkout_infoUncheckedUpdateWithoutOrdersInput>
+  }
+
+  export type Checkout_infoUpdateWithoutOrdersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    cpf?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    cep?: StringFieldUpdateOperationsInput | string
+    street?: StringFieldUpdateOperationsInput | string
+    number?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Checkout_infoUncheckedUpdateWithoutOrdersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    cpf?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    cep?: StringFieldUpdateOperationsInput | string
+    street?: StringFieldUpdateOperationsInput | string
+    number?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrdersCreateWithoutUserInput = {
+    id?: string
+    category: string
+    name: string
+    type: string
+    image: string
+    price: string
+    amount: string
+    total: string
+    created?: Date | string
+  }
+
+  export type OrdersUncheckedCreateWithoutUserInput = {
+    id?: string
+    category: string
+    name: string
+    type: string
+    image: string
+    price: string
+    amount: string
+    total: string
+    created?: Date | string
+  }
+
+  export type OrdersCreateOrConnectWithoutUserInput = {
+    where: OrdersWhereUniqueInput
+    create: XOR<OrdersCreateWithoutUserInput, OrdersUncheckedCreateWithoutUserInput>
+  }
+
+  export type OrdersCreateManyUserInputEnvelope = {
+    data: OrdersCreateManyUserInput | OrdersCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type OrdersUpsertWithWhereUniqueWithoutUserInput = {
+    where: OrdersWhereUniqueInput
+    update: XOR<OrdersUpdateWithoutUserInput, OrdersUncheckedUpdateWithoutUserInput>
+    create: XOR<OrdersCreateWithoutUserInput, OrdersUncheckedCreateWithoutUserInput>
+  }
+
+  export type OrdersUpdateWithWhereUniqueWithoutUserInput = {
+    where: OrdersWhereUniqueInput
+    data: XOR<OrdersUpdateWithoutUserInput, OrdersUncheckedUpdateWithoutUserInput>
+  }
+
+  export type OrdersUpdateManyWithWhereWithoutUserInput = {
+    where: OrdersScalarWhereInput
+    data: XOR<OrdersUpdateManyMutationInput, OrdersUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type OrdersScalarWhereInput = {
+    AND?: OrdersScalarWhereInput | OrdersScalarWhereInput[]
+    OR?: OrdersScalarWhereInput[]
+    NOT?: OrdersScalarWhereInput | OrdersScalarWhereInput[]
+    id?: StringFilter<"Orders"> | string
+    category?: StringFilter<"Orders"> | string
+    name?: StringFilter<"Orders"> | string
+    type?: StringFilter<"Orders"> | string
+    image?: StringFilter<"Orders"> | string
+    price?: StringFilter<"Orders"> | string
+    amount?: StringFilter<"Orders"> | string
+    total?: StringFilter<"Orders"> | string
+    created?: DateTimeFilter<"Orders"> | Date | string
+    UserId?: StringFilter<"Orders"> | string
+  }
+
+  export type OrdersCreateManyUserInput = {
+    id?: string
+    category: string
+    name: string
+    type: string
+    image: string
+    price: string
+    amount: string
+    total: string
+    created?: Date | string
+  }
+
+  export type OrdersUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    price?: StringFieldUpdateOperationsInput | string
+    amount?: StringFieldUpdateOperationsInput | string
+    total?: StringFieldUpdateOperationsInput | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrdersUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    price?: StringFieldUpdateOperationsInput | string
+    amount?: StringFieldUpdateOperationsInput | string
+    total?: StringFieldUpdateOperationsInput | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrdersUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    price?: StringFieldUpdateOperationsInput | string
+    amount?: StringFieldUpdateOperationsInput | string
+    total?: StringFieldUpdateOperationsInput | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
