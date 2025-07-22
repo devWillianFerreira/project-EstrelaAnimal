@@ -1,38 +1,93 @@
-// Follow this setup guide to integrate the Deno language server with your editor:
-// https://deno.land/manual/getting_started/setup_your_environment
-// This enables autocomplete, go to definition, etc.
+import { serve } from "https://deno.land/std/http/server.ts";
+import Stripe from "npm:stripe";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-// Import via bare specifier thanks to the import_map.json file.
-import Stripe from 'https://esm.sh/stripe@14?target=denonext'
+const stripe = new Stripe(Deno.env.get("VITE_STRIPE_SECRET_KEY")!, {
+  apiVersion: "2022-11-15",
+});
 
-const stripe = new Stripe(Deno.env.get('VITE_STRIPE_API_KEY') as string, {
-  // This is needed to use the Fetch API rather than relying on the Node http
-  // package.
-  apiVersion: '2024-11-20'
-})
-// This is needed in order to use the Web Crypto API in Deno.
-const cryptoProvider = Stripe.createSubtleCryptoProvider()
+const supabase = createClient(
+  Deno.env.get("VITE_SUPABASE_URL")!,
+  Deno.env.get("VITE_SUPABASE_SERVICE_ROLE_KEY")!
+);
 
-console.log('Hello from Stripe Webhook!')
+serve(async (req) => {
+  let body: string;
+  let sig: string | null;
+  let event: Stripe.Event;
 
-Deno.serve(async (request) => {
-  const signature = request.headers.get('Stripe-Signature')
-
-  // First step is to verify the event. The .text() method must be used as the
-  // verification relies on the raw request body rather than the parsed JSON.
-  const body = await request.text()
-  let receivedEvent
   try {
-    receivedEvent = await stripe.webhooks.constructEventAsync(
-      body,
-      signature!,
-      Deno.env.get('VITE_STRIPE_WEBHOOK_SIGNING_KEY')!,
-      undefined,
-      cryptoProvider
-    )
+    body = await req.text();
+    sig = req.headers.get("stripe-signature");
+    if (!sig) throw new Error("Assinatura ausente");
+
+   event = await stripe.webhooks.constructEventAsync(
+  body,
+  sig,
+  Deno.env.get("VITE_STRIPE_WEBHOOK_SIGNING_KEY")!
+);
   } catch (err) {
-    return new Response(err.message, { status: 400 })
+    console.error("Erro na verificação do webhook:", err.message);
+    return new Response(`Webhook Error: ${err.message}`, { status: 400 });
   }
-  console.log(`🔔 Event received: ${receivedEvent.id}`)
-  return new Response(JSON.stringify({ ok: true }), { status: 200 })
+
+  if (event.type === "checkout.session.completed") {
+    const session = event.data.object as Stripe.Checkout.Session;
+
+    console.log("🔔 Evento checkout.session.completed recebido");
+
+    let cart = [];
+    let checkoutInfo = {};
+    let userId = "";
+    try {
+      if (session.metadata?.userId) {
+    userId = session.metadata.userId;
+  }
+      if (session.metadata?.cart) {
+        cart = JSON.parse(session.metadata.cart);
+      }
+      if (session.metadata?.checkoutInfo) {
+        checkoutInfo = JSON.parse(session.metadata.checkoutInfo);
+      }
+    } catch (err) {
+      console.error("Erro ao fazer parse do metadata:", err.message);
+      return new Response("Erro ao ler cart ou checkoutInfo", { status: 400 });
+    }
+
+    try {
+      // Inserir pedidos
+      for (const item of cart) {
+        const { error } = await supabase.from("Orders").insert({
+          amount: item.amount,
+          price: item.price,
+          image: item.image,
+          category: item.category,
+          name: item.name,
+          total: item.total,
+          type: item.type,
+          userId: userId
+        });
+        if (error) {
+          console.error("Erro ao salvar pedido:", error.message);
+          return new Response("Erro ao salvar pedido", { status: 500 });
+        }
+      }
+
+      // Inserir checkout info
+      const { error: checkoutError } = await supabase.from("Checkout_info").insert({
+        ...checkoutInfo,
+      });
+      if (checkoutError) {
+        console.error("Erro ao salvar checkout_info:", checkoutError.message);
+        return new Response("Erro ao salvar checkout_info", { status: 500 });
+      }
+
+      console.log("✅ Dados salvos no Supabase com sucesso!");
+    } catch (err) {
+      console.error("Erro inesperado ao salvar dados:", err.message);
+      return new Response("Erro ao salvar dados", { status: 500 });
+    }
+  }
+
+  return new Response("ok", { status: 200 });
 });
