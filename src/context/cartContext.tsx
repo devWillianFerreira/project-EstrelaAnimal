@@ -13,6 +13,7 @@ interface cardContextData {
   removeItemCart: (newPorduct: cartProps) => void;
   deleteItemCart: (newPorduct: cartProps) => void;
   totalResultCart: (items: cartProps[]) => void;
+  clearCard: () => void;
 }
 
 export interface cartProps {
@@ -33,6 +34,7 @@ function CartProvider({ children }: cardProviderProps) {
     const storedCart = localStorage.getItem("cart");
     return storedCart ? JSON.parse(storedCart) : [];
   });
+  const clearCard = () => setCart([]);
   const [total, setTotal] = useState("");
 
   useEffect(() => {
@@ -114,6 +116,7 @@ function CartProvider({ children }: cardProviderProps) {
         removeItemCart,
         deleteItemCart,
         totalResultCart,
+        clearCard,
       }}
     >
       {children}
