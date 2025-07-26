@@ -3,19 +3,19 @@ import { Phone } from "lucide-react";
 const BannerHome = () => {
   return (
     <section className="text-black relative bg-[url(bgBanner.jpg)] ">
-      <div className="container mx-auto pt-16 pb-16 md:pb-0 lg:pb-0 px-4 relativ">
+      <div className="container mx-auto pt-8 pb-16 md:pb-0 lg:pb-0 px-4 relative">
         <article className="grid grid-cols-1 lg:grid-cols-2 gap-8 ">
           <div className="space-y-6">
             <h1 className="text-3xl font-bol md:text-4xl lg:text-5xl font-bold leading-10">
               Seu pet merece cuidado, carinho e atenção especial.
             </h1>
-            <p className=";g: text-lg">
+            <p className="text-lg">
               Oferecemos os melhores produtos para garantir o bem-estar e a
               felicidade do seu amigo de quatro patas.
             </p>
             <div>
               <a
-                href=" #"
+                href={`https://api.whatsapp.com/send?phone=5511944336699&text=Olá! Gostaria de tirar uma dúvida sobre um produto. `}
                 className="bg-green-500 px-4 py-2 rounded-md font-semibold flex gap-3 items-center justify-center w-fit text-white"
               >
                 <Phone className="text-white w-5 h-5" />
