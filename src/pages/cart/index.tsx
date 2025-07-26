@@ -75,14 +75,22 @@ const CartPage = () => {
                   >
                     <div className="flex items-center gap-4 w-full max-w-50">
                       <div>
-                        <img
-                          src={item.image}
-                          className="w-20 h-20 object-cover rounded-md"
-                        />
+                        <Link
+                          className="font-semibold truncate w-full"
+                          to={`/productDetail/${item.id}`}
+                        >
+                          <img
+                            src={item.image}
+                            className="w-20 h-20 object-cover rounded-md"
+                          />
+                        </Link>
                       </div>
-                      <h1 className="font-semibold truncate w-full">
+                      <Link
+                        className="font-semibold truncate w-full"
+                        to={`/productDetail/${item.id}`}
+                      >
                         {item.name}
-                      </h1>
+                      </Link>
                     </div>
                     <h1 className="font-semibold">
                       {item.price.toLocaleString("PT-BR", {
