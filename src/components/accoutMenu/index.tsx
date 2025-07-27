@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { supabase } from "../../services/connectionSupabase";
+import { Link } from "react-router-dom";
 
 const AccountMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +28,7 @@ const AccountMenu = () => {
         <div className="absolute  mt-0 left-1/2 -translate-x-1/2  w-48 bg-white text-black rounded-md shadow-lg p-3 z-50 flex flex-col transition-all duration-200">
           <ul className="space-y-2">
             <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
-              Meus Pedidos
+              <Link to="/orders">Meus Pedidos</Link>
             </li>
             <li
               className="hover:bg-gray-100 p-2 rounded cursor-pointer"
