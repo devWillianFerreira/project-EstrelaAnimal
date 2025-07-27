@@ -72,9 +72,9 @@ const Services = () => {
     emblaApi?.scrollNext();
   }
   return (
-    <section className="bg-white px-16">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-blue-950 py-10 space-y-5">
+    <section className="bg-white container px-4 mx-auto pb-5">
+      <div>
+        <h2 className="text-4xl font-bold text-blue-950 py-5 space-y-5 ">
           Serviços
         </h2>
         <div className="relative">
@@ -105,8 +105,9 @@ const Services = () => {
                         <span>{item.duration}</span>
                       </div>
                       <a
-                        href=" #"
+                        href={`https://api.whatsapp.com/send?phone=5511944336699&text=${item.linkText}`}
                         className="  flex gap-2 items-center justify-center "
+                        target="_blank non"
                       >
                         <Phone className="text-white w-5 h-5" />
                         Contato via WhatsApp
