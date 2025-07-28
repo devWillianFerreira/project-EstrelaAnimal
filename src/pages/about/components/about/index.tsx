@@ -51,15 +51,19 @@ const About = () => {
             </ul>
             <div className="flex gap-2">
               <a
-                href=" #"
+                href={`https://api.whatsapp.com/send?phone=5511944336699&text=Olá! Gostaria de tirar uma dúvida sobre um produto. `}
                 className="bg-green-500 px-4 py-2 rounded-md font-semibold flex gap-3 items-center justify-center w-fit text-white"
+                target="_blank"
+                rel="noreferrer noopener"
               >
                 <Phone className="text-white w-5 h-5" />
                 Contato via WhatsApp
               </a>
               <a
-                href=" #"
+                href="https://maps.app.goo.gl/Y75exRjHBomG7Q4w9"
                 className="bg-zinc-400 px-4 py-2 rounded-md font-semibold flex gap-3 items-center justify-center w-fit text-white"
+                target="_blank"
+                rel="noreferrer noopener"
               >
                 <MapPin className="text-white w-5 h-5" />
                 Endereço da Loja
