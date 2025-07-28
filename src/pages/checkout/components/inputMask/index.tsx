@@ -32,7 +32,7 @@ const MaskedInput = ({
         placeholder={placeholder}
         replacement={replacement}
       />
-      {error && <p>{error}</p>}
+      {error && <p className="text-red-500 pb-3">{error}</p>}
     </div>
   );
 };
